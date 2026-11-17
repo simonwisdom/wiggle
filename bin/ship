@@ -1,0 +1,14 @@
+#!/bin/bash
+# Ship this worktree's branch: test it, put it on master, and deploy it to Cloudflare Workers
+# (wiggle.simonwisdom.workers.dev). Run from a session's own worktree, only after Simon says ship:
+#   bin/ship           ship it
+#   bin/ship --check   everything up to the merge (rebase, tests), then stop
+# The common steps (refusals, lock, rebase, merge, cleanup) are the shared ship in ~/.local/bin,
+# from ~/Documents/2026/skills/global/bin/ship; this file holds what is Wiggle's own.
+
+SHIP_TEST="npm test"
+# Node's fetch timed out reaching Cloudflare over IPv6 on 12 Nov 2026; IPv4 first fixed it.
+SHIP_DEPLOY='NODE_OPTIONS="--dns-result-order=ipv4first --no-network-family-autoselection" npx -y wrangler deploy'
+SHIP_URL=https://wiggle.simonwisdom.workers.dev/
+
+source "$HOME/.local/bin/ship"

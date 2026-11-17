@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" />
+<script src="assets/vendor/three.min.js"></script>
+<script src="assets/preview-data.js"></script>
+<script src="scene.js"></script>
+<style>body{margin:0;background:#fff}</style></head>
+<body><canvas id="sheet"></canvas>
+<script>
+  // A contact sheet: each cell is one frame on its camera, with a label. Data from preview.mjs.
+  const D = window.PREVIEW, CELL = D.cell, COLS = D.cols, rows = Math.ceil(D.cells.length / COLS), LABEL = 22;
+  const sheet = document.getElementById("sheet"); sheet.width = COLS * CELL; sheet.height = rows * (CELL + LABEL);
+  const ctx = sheet.getContext("2d");
+  ctx.fillStyle = window.FIG3D_COLORS.panel; ctx.fillRect(0, 0, sheet.width, sheet.height);
+  const fig = FIG3D.create({ size: CELL, joints: D.joints, mat: D.cfg.mat, fov: D.cfg.fov, head: D.cfg.head });
+  const out = [];
+  D.cells.forEach((c, i) => {
+    fig.draw(c.d.map((v) => v / 1000)); fig.setCamera(c.cam); fig.render();
+    const x = (i % COLS) * CELL, y = Math.floor(i / COLS) * (CELL + LABEL);
+    ctx.fillStyle = window.FIG3D_COLORS.panel; ctx.fillRect(x, y, CELL, CELL + LABEL);
+    ctx.drawImage(fig.canvas, x, y + LABEL);
+    ctx.fillStyle = "#23262b"; ctx.font = "600 14px sans-serif"; ctx.fillText(c.label, x + 8, y + 16);
+    // the camera check: where three.js puts the head, for comparison with cameras.mjs
+    const v = new fig.three.Vector3(c.probe[0], c.probe[1], c.probe[2]).project(fig.camera);
+    out.push(Math.hypot((v.x * 0.5 + 0.5) * D.cfg.size - c.expect[0], (0.5 - v.y * 0.5) * D.cfg.size - c.expect[1]));
+  });
+  // largest gap, in pixels, between three.js's projection and cameras.mjs's (read with chrome --dump-dom)
+  const err = document.createElement("div"); err.id = "camerr"; err.style.cssText = "display:none"; err.textContent = Math.max(...out).toFixed(3); document.body.appendChild(err);
+  document.title = "ready";
+</script></body></html>

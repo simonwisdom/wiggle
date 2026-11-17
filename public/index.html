@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f3f6ff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0f1428" media="(prefers-color-scheme: dark)" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Wiggle" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <title>Wiggle</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <!-- Icons: one stroke set, drawn on a 24 grid, so every button in the app looks like it came from the same hand -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M6 5v14"/><path class="fill" d="M19 5.5v13a.6.6 0 0 1-.9.5L8.6 12.5a.6.6 0 0 1 0-1L18.1 5a.6.6 0 0 1 .9.5z"/></symbol>
+    <symbol id="i-skip" viewBox="0 0 24 24"><path d="M18 5v14"/><path class="fill" d="M5 5.5v13a.6.6 0 0 0 .9.5l9.5-6.5a.6.6 0 0 0 0-1L5.9 5a.6.6 0 0 0-.9.5z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect class="fill" x="6" y="5" width="4" height="14" rx="1.2"/><rect class="fill" x="14" y="5" width="4" height="14" rx="1.2"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path class="fill" d="M7.5 5.2v13.6a.8.8 0 0 0 1.2.7l10.6-6.8a.8.8 0 0 0 0-1.4L8.7 4.5a.8.8 0 0 0-1.2.7z"/></symbol>
+    <symbol id="i-voice" viewBox="0 0 24 24"><path class="fill" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path class="fill" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 8h13l-3.5-3.5M19 16H6l3.5 3.5"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+    <!-- the kinds of session -->
+    <symbol id="i-morning" viewBox="0 0 24 24"><path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 7v2M5.6 10.6l1.4 1.4M18.4 10.6 17 12"/></symbol>
+    <symbol id="i-before" viewBox="0 0 24 24"><path d="M12 3c1 4 5 5.5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1.5 2 2 2 2s-.5-3.5 1-7z"/></symbol>
+    <symbol id="i-after" viewBox="0 0 24 24"><path d="M3 9c3-3 6 3 9 0s6 3 9 0M3 15c3-3 6 3 9 0s6 3 9 0"/></symbol>
+    <symbol id="i-qigong" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 0 0 9"/><circle class="fill" cx="12" cy="7.5" r="1.3"/><circle cx="12" cy="16.5" r="1.3"/></symbol>
+    <!-- gear -->
+    <symbol id="i-roller" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M8 8v8M16 8v8"/></symbol>
+    <symbol id="i-stick" viewBox="0 0 24 24"><path d="M4 18 20 6"/><circle class="fill" cx="4" cy="18" r="1.8"/><circle class="fill" cx="20" cy="6" r="1.8"/></symbol>
+    <symbol id="i-gun" viewBox="0 0 24 24"><path d="M4 8h11a3 3 0 0 1 0 6h-4l-1 7H7l1-7H4z"/><circle class="fill" cx="19.5" cy="11" r="1.5"/></symbol>
+  </svg>
+  <!-- Home: pick a length and a focus, see today's session, start -->
+  <main id="home" class="screen">
+    <header class="top">
+      <h1><img src="icon.svg" alt="" />Wiggle</h1>
+      <div class="weekbox">
+        <ol id="week" class="week" aria-label="This week"></ol>
+        <p id="streak" class="muted"></p>
+      </div>
+    </header>
+
+    <section class="pick">
+      <h2 class="sr-only">What's it for?</h2>
+      <div class="tiles" id="modes" role="radiogroup" aria-label="What it's for"></div>
+    </section>
+
+    <section class="pick">
+      <h2 class="sr-only">How long?</h2>
+      <div class="seg" id="lengths" role="radiogroup" aria-label="Length">
+        <button role="radio" data-min="5">5 min</button>
+        <button role="radio" data-min="10">10 min</button>
+        <button role="radio" data-min="15">15 min</button>
+      </div>
+    </section>
+
+    <section class="pick">
+      <h2 id="focus-title"></h2>
+      <!-- Pick on the body: a label for each area or muscle group, joined by a line to its spot on the figure -->
+      <div class="bodymap" id="focuses" role="group" aria-labelledby="focus-title">
+        <svg class="bm-lead" id="bm-lead" aria-hidden="true"></svg>
+        <svg class="bm-body" viewBox="0 0 160 236" aria-hidden="true">
+          <circle class="bm-b" cx="80" cy="20" r="14" />
+          <path class="bm-l" stroke-width="26" d="M80 42 L80 118" />
+          <path class="bm-l" stroke-width="14" d="M54 46 L106 46" />
+          <path class="bm-l" stroke-width="11" d="M52 48 L42 96 L38 132 M108 48 L118 96 L122 132" />
+          <path class="bm-l" stroke-width="18" d="M66 120 L94 120" />
+          <path class="bm-l" stroke-width="13" d="M68 124 L64 176 L62 224 M92 124 L96 176 L98 224" />
+          <g id="bm-spots"></g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="pick">
+      <h2 id="gear-title">Your gear</h2>
+      <div class="seg gearrow" id="gear" role="group" aria-labelledby="gear-title"></div>
+    </section>
+
+    <section class="today">
+      <h2 id="today-title"></h2>
+      <p id="mode-note" class="muted small"></p>
+      <p id="adjust" class="muted adjust"></p>
+      <ol id="today-list" class="moves"></ol>
+    </section>
+
+    <section class="pick">
+      <h2>Settings</h2>
+      <div class="rows">
+        <button id="open-moves" class="row"><span class="rowtext"><span>Moves</span><span class="muted small">More, less or never</span></span><svg class="ic chev"><use href="#i-chev"/></svg></button>
+        <button id="open-figure" class="row"><span class="rowtext"><span>Your figure</span><span id="figure-sub" class="muted small">Flat or 3D, and a head</span></span><svg class="ic chev"><use href="#i-chev"/></svg></button>
+        <button id="music" class="row" role="switch" aria-checked="false" hidden><span class="rowtext"><span>Keep my music playing</span><span id="music-note" class="muted small"></span></span><span class="switch" aria-hidden="true"></span></button>
+      </div>
+    </section>
+
+    <div class="dock"><button id="start" class="primary">Start</button></div>
+  </main>
+
+  <!-- Player -->
+  <main id="play" class="screen" hidden>
+    <div class="playtop">
+      <button id="stop" class="icon" aria-label="Stop"><svg class="ic"><use href="#i-close"/></svg></button>
+      <div class="prog"><div id="progfill"></div></div>
+      <span id="left" class="muted tnum"></span>
+    </div>
+    <p id="kicker" class="muted kicker"></p>
+    <h2 id="name" class="name"></h2>
+    <p id="count" class="muted count"></p>
+    <div class="figbox"><div id="figwrap" class="figwrap"></div><div id="fig3d" class="fig3d" aria-hidden="true"></div>
+      <button id="look" class="looksw" aria-label="Figure style"><span data-fig="flat">Flat</span><span data-fig="3d">3D</span></button></div>
+    <div class="breath">
+      <p id="breath" class="breathword"></p>
+      <div class="btrack"><div id="bfill"></div></div>
+      <div class="steptrack"><div id="stepfill"></div></div>
+    </div>
+    <p id="cap" class="cap"></p>
+    <div class="controls">
+      <button id="sound" class="icon side" aria-label="Voice"><svg class="ic on"><use href="#i-voice"/></svg><svg class="ic off"><use href="#i-mute"/></svg><span class="lbl">Voice</span></button>
+      <button id="back" class="icon big" aria-label="Back to the start of this move"><svg class="ic"><use href="#i-back"/></svg></button>
+      <button id="pause" class="icon huge" aria-label="Pause"><svg class="ic i-pause"><use href="#i-pause"/></svg><svg class="ic i-play"><use href="#i-play"/></svg></button>
+      <button id="skip" class="icon big" aria-label="Skip to the next move"><svg class="ic"><use href="#i-skip"/></svg></button>
+      <button id="swap" class="icon side" aria-label="Swap move" disabled><svg class="ic"><use href="#i-swap"/></svg><span class="lbl">Swap</span></button>
+    </div>
+  </main>
+
+  <!-- Done -->
+  <main id="done" class="screen" hidden>
+    <div class="donebox">
+      <h2 id="done-title" class="donetitle"></h2>
+      <p id="done-sub" class="muted"></p>
+      <h3>How did that feel?</h3>
+      <div class="feel opts">
+        <button data-feel="easy">Easy</button>
+        <button data-feel="right">About right</button>
+        <button data-feel="hard">Hard</button>
+      </div>
+      <p class="muted small">The next session changes with your answer.</p>
+      <button id="no-feel" class="quiet">Skip</button>
+    </div>
+  </main>
+
+  <!-- Moves on/off -->
+  <dialog id="moves">
+    <form method="dialog">
+      <div class="sheethead"><h2 tabindex="-1" autofocus>Moves</h2><button class="done" value="close">Done</button></div>
+      <p class="muted small">More and Less change how often a move comes up. Never keeps it out. Cat–cow opens and Stand still closes every morning session.</p>
+      <ul id="move-list" class="movelist"></ul>
+    </form>
+  </dialog>
+
+  <!-- Your figure: pick a head -->
+  <dialog id="figure">
+    <form method="dialog">
+      <div class="sheethead"><h2>Your figure</h2><button class="done" value="close">Done</button></div>
+      <p class="muted small">Pick a look and a head. They play this way in every session.</p>
+      <div id="figmode" class="seg two" role="radiogroup" aria-label="Figure style">
+        <button type="button" role="radio" data-fig="flat">Flat</button>
+        <button type="button" role="radio" data-fig="3d">3D</button>
+      </div>
+      <p id="fignote" class="muted small" hidden></p>
+      <div id="figprev" class="figprev"></div>
+      <div id="heads" class="heads" role="radiogroup" aria-label="Head"></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+  <audio id="track" preload="auto"></audio>
+
+  <script src="poses.js"></script>
+  <script src="plan.js"></script>
+  <script src="clips.js"></script>
+  <script src="clipplay.js"></script>
+  <script src="gear.js"></script>
+  <script src="figure.js"></script>
+  <script src="figure3d.js"></script>
+  <script src="sound.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

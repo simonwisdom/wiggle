@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/vendor/three.min.js"></script>
+    <script src="assets/motion-data.js"></script>
+    <script src="scene.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; overflow: hidden; background: #e9e5df; }
+      #root { position: relative; width: 1080px; height: 1080px; overflow: hidden; }
+      #gl { position: absolute; left: 0; top: 0; width: 1080px; height: 1080px; }
+    </style>
+  </head>
+  <body>
+    <!-- The render: every clip in assets/motion-data.js back to back, one frame per 1/30 s, on one fixed camera each.
+         export.mjs writes the data and the list of cuts. Square, 1080: scale to 540 when cutting the clips. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="1" data-width="1080" data-height="1080">
+      <canvas id="gl" width="1080" height="1080"></canvas>
+    </div>
+    <script>
+      const M = window.MOTION, NJ = M.joints.length, FPS = M.fps;
+      document.getElementById("root").style.background = window.FIG3D_COLORS.panel;
+      document.body.style.background = window.FIG3D_COLORS.panel;
+      const fig = FIG3D.create({ size: 1080, canvas: document.getElementById("gl"), joints: M.joints, mat: M.cfg.mat, fov: M.cfg.fov, head: M.cfg.head });
+      let acc = 0;
+      for (const s of M.segs) { s.f0 = acc; acc += s.n; }
+      const TOTAL = acc / FPS;
+      document.getElementById("root").setAttribute("data-duration", String(TOTAL));
+      const buf = new Float32Array(NJ * 3);
+      function render(t) {
+        const f = Math.min(acc - 1, Math.max(0, Math.round(t * FPS)));
+        let k = 0; while (k < M.segs.length - 1 && f >= M.segs[k + 1].f0) k++;
+        const s = M.segs[k], o = (f - s.f0) * NJ * 3;
+        for (let j = 0; j < NJ * 3; j++) buf[j] = s.d[o + j] / 1000;
+        fig.draw(buf); fig.setCamera(s.cam); fig.render();
+      }
+      const clock = { t: 0 };
+      const tl = gsap.timeline({ paused: true });
+      tl.to(clock, { t: TOTAL, duration: TOTAL, ease: "none", onUpdate: () => render(clock.t) }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      render(0);
+    </script>
+  </body>
+</html>

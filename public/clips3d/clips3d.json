@@ -1,0 +1,2995 @@
+{
+ "size": 540,
+ "fps": 30,
+ "headsFile": "clips3d-heads.json",
+ "headFields": [
+  "headX",
+  "headY",
+  "neckX",
+  "neckY",
+  "headHeight",
+  "tiltDeg"
+ ],
+ "totalBytes": 5424386,
+ "clips": {
+  "ankle.a.F>ankle.b.F@F": {
+   "file": "ankle.a.F_to_ankle.b.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "ankle.a.F",
+   "to": "ankle.b.F",
+   "side": "F",
+   "moves": [
+    "ankle"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    103,
+    76,
+    355,
+    397
+   ]
+  },
+  "ankle.a>ankle.b@N": {
+   "file": "ankle.a_to_ankle.b.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "ankle.a",
+   "to": "ankle.b",
+   "side": "N",
+   "moves": [
+    "ankle"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    129,
+    76,
+    355,
+    418
+   ]
+  },
+  "ankle.b.F>ankle.a.F@F": {
+   "file": "ankle.b.F_to_ankle.a.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "ankle.b.F",
+   "to": "ankle.a.F",
+   "side": "F",
+   "moves": [
+    "ankle"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    103,
+    76,
+    355,
+    397
+   ]
+  },
+  "ankle.b>ankle.a.F@F": {
+   "file": "ankle.b_to_ankle.a.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "ankle.b",
+   "to": "ankle.a.F",
+   "side": "F",
+   "moves": [
+    "ankle"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    103,
+    76,
+    355,
+    418
+   ]
+  },
+  "ankle.b>ankle.a@N": {
+   "file": "ankle.b_to_ankle.a.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "ankle.b",
+   "to": "ankle.a",
+   "side": "N",
+   "moves": [
+    "ankle"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    129,
+    76,
+    355,
+    418
+   ]
+  },
+  "beast>sideSit@F": {
+   "file": "beast_to_sideSit.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "beast",
+   "to": "sideSit",
+   "side": "F",
+   "moves": [
+    "beastcrab"
+   ],
+   "seconds": 1.4,
+   "frames": 43,
+   "fps": 30,
+   "box": [
+    134,
+    186,
+    425,
+    436
+   ]
+  },
+  "beast>sideSit@N": {
+   "file": "beast_to_sideSit.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "beast",
+   "to": "sideSit",
+   "side": "N",
+   "moves": [
+    "beastcrab"
+   ],
+   "seconds": 1.4,
+   "frames": 43,
+   "fps": 30,
+   "box": [
+    95,
+    174,
+    425,
+    440
+   ]
+  },
+  "bowF>bowRest@both": {
+   "file": "bowF_to_bowRest.both.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "bowF",
+   "to": "bowRest",
+   "side": "both",
+   "moves": [
+    "bow",
+    "skybow"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    124,
+    85,
+    317,
+    499
+   ]
+  },
+  "bowN>bowRest@both": {
+   "file": "bowN_to_bowRest.both.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "bowN",
+   "to": "bowRest",
+   "side": "both",
+   "moves": [
+    "bow",
+    "skybow"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    161,
+    85,
+    364,
+    499
+   ]
+  },
+  "bowRest>bowF@both": {
+   "file": "bowRest_to_bowF.both.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "bowRest",
+   "to": "bowF",
+   "side": "both",
+   "moves": [
+    "bow",
+    "skybow"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    124,
+    85,
+    317,
+    499
+   ]
+  },
+  "bowRest>bowN@both": {
+   "file": "bowRest_to_bowN.both.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "bowRest",
+   "to": "bowN",
+   "side": "both",
+   "moves": [
+    "bow",
+    "skybow"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    161,
+    85,
+    364,
+    499
+   ]
+  },
+  "bridge.a>bridge.b@N": {
+   "file": "bridge.a_to_bridge.b.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "bridge.a",
+   "to": "bridge.b",
+   "side": "N",
+   "moves": [
+    "bridge"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    83,
+    246,
+    406,
+    398
+   ]
+  },
+  "bridge.b>bridge.a@N": {
+   "file": "bridge.b_to_bridge.a.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "bridge.b",
+   "to": "bridge.a",
+   "side": "N",
+   "moves": [
+    "bridge"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    83,
+    246,
+    406,
+    398
+   ]
+  },
+  "butterfly.in~butterfly.out@N": {
+   "file": "butterfly.in-butterfly.out.N.mp4",
+   "kind": "hold",
+   "camera": "seated",
+   "from": "butterfly.in",
+   "to": "butterfly.out",
+   "side": "N",
+   "moves": [
+    "butterfly"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    210,
+    161,
+    395,
+    390
+   ]
+  },
+  "butterfly.start>butterfly.in@N": {
+   "file": "butterfly.start_to_butterfly.in.N.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "butterfly.start",
+   "to": "butterfly.in",
+   "side": "N",
+   "moves": [
+    "butterfly"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    211,
+    161,
+    395,
+    390
+   ]
+  },
+  "calfraise.a>calfraise.b@N": {
+   "file": "calfraise.a_to_calfraise.b.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "calfraise.a",
+   "to": "calfraise.b",
+   "side": "N",
+   "moves": [
+    "calfraise"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    171,
+    35,
+    289,
+    479
+   ]
+  },
+  "calfraise.b>calfraise.a@N": {
+   "file": "calfraise.b_to_calfraise.a.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "calfraise.b",
+   "to": "calfraise.a",
+   "side": "N",
+   "moves": [
+    "calfraise"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    171,
+    35,
+    289,
+    479
+   ]
+  },
+  "cat>cow@both": {
+   "file": "cat_to_cow.both.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "cat",
+   "to": "cow",
+   "side": "both",
+   "moves": [
+    "catcow"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    108,
+    206,
+    439,
+    438
+   ]
+  },
+  "child.in~child.out@N": {
+   "file": "child.in-child.out.N.mp4",
+   "kind": "hold",
+   "camera": "floor",
+   "from": "child.in",
+   "to": "child.out",
+   "side": "N",
+   "moves": [
+    "child"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    106,
+    286,
+    419,
+    449
+   ]
+  },
+  "child.start>child.in@N": {
+   "file": "child.start_to_child.in.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "child.start",
+   "to": "child.in",
+   "side": "N",
+   "moves": [
+    "child"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    106,
+    256,
+    439,
+    449
+   ]
+  },
+  "cobra.a>cobra.b@N": {
+   "file": "cobra.a_to_cobra.b.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "cobra.a",
+   "to": "cobra.b",
+   "side": "N",
+   "moves": [
+    "cobra"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    66,
+    157,
+    473,
+    403
+   ]
+  },
+  "cobra.b>cobra.a@N": {
+   "file": "cobra.b_to_cobra.a.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "cobra.b",
+   "to": "cobra.a",
+   "side": "N",
+   "moves": [
+    "cobra"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    66,
+    157,
+    473,
+    403
+   ]
+  },
+  "cossack.f>cossack.mid@N": {
+   "file": "cossack.f_to_cossack.mid.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "cossack.f",
+   "to": "cossack.mid",
+   "side": "N",
+   "moves": [
+    "cossack"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    118,
+    73,
+    409,
+    480
+   ]
+  },
+  "cossack.mid>cossack.f@N": {
+   "file": "cossack.mid_to_cossack.f.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "cossack.mid",
+   "to": "cossack.f",
+   "side": "N",
+   "moves": [
+    "cossack"
+   ],
+   "seconds": 4.1,
+   "frames": 124,
+   "fps": 30,
+   "box": [
+    118,
+    73,
+    409,
+    480
+   ]
+  },
+  "cossack.mid>cossack.n@N": {
+   "file": "cossack.mid_to_cossack.n.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "cossack.mid",
+   "to": "cossack.n",
+   "side": "N",
+   "moves": [
+    "cossack"
+   ],
+   "seconds": 4.1,
+   "frames": 124,
+   "fps": 30,
+   "box": [
+    106,
+    73,
+    397,
+    480
+   ]
+  },
+  "cossack.n>cossack.mid@N": {
+   "file": "cossack.n_to_cossack.mid.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "cossack.n",
+   "to": "cossack.mid",
+   "side": "N",
+   "moves": [
+    "cossack"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    106,
+    73,
+    397,
+    480
+   ]
+  },
+  "cow>cat@both": {
+   "file": "cow_to_cat.both.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "cow",
+   "to": "cat",
+   "side": "both",
+   "moves": [
+    "catcow"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    108,
+    206,
+    439,
+    438
+   ]
+  },
+  "crabF>sideSit@F": {
+   "file": "crabF_to_sideSit.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "crabF",
+   "to": "sideSit",
+   "side": "F",
+   "moves": [
+    "beastcrab"
+   ],
+   "seconds": 2.7,
+   "frames": 82,
+   "fps": 30,
+   "box": [
+    81,
+    135,
+    393,
+    436
+   ]
+  },
+  "crabN>sideSit@N": {
+   "file": "crabN_to_sideSit.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "crabN",
+   "to": "sideSit",
+   "side": "N",
+   "moves": [
+    "beastcrab"
+   ],
+   "seconds": 2.7,
+   "frames": 82,
+   "fps": 30,
+   "box": [
+    95,
+    77,
+    455,
+    402
+   ]
+  },
+  "dog>fold@both": {
+   "file": "dog_to_fold.both.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "dog",
+   "to": "fold",
+   "side": "both",
+   "moves": [
+    "dogfold"
+   ],
+   "seconds": 5.9,
+   "frames": 178,
+   "fps": 30,
+   "box": [
+    124,
+    258,
+    416,
+    509
+   ]
+  },
+  "dogpedal.f>dogpedal.n@N": {
+   "file": "dogpedal.f_to_dogpedal.n.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "dogpedal.f",
+   "to": "dogpedal.n",
+   "side": "N",
+   "moves": [
+    "dogpedal"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    128,
+    211,
+    425,
+    450
+   ]
+  },
+  "dogpedal.n>dogpedal.f@N": {
+   "file": "dogpedal.n_to_dogpedal.f.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "dogpedal.n",
+   "to": "dogpedal.f",
+   "side": "N",
+   "moves": [
+    "dogpedal"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    128,
+    211,
+    425,
+    450
+   ]
+  },
+  "figure4.in.F~figure4.out.F@F": {
+   "file": "figure4.in.F-figure4.out.F.F.mp4",
+   "kind": "hold",
+   "camera": "lying",
+   "from": "figure4.in.F",
+   "to": "figure4.out.F",
+   "side": "F",
+   "moves": [
+    "figure4"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    94,
+    206,
+    356,
+    355
+   ]
+  },
+  "figure4.in>figure4.start@N": {
+   "file": "figure4.in_to_figure4.start.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "figure4.in",
+   "to": "figure4.start",
+   "side": "N",
+   "moves": [
+    "figure4"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    86,
+    204,
+    406,
+    383
+   ]
+  },
+  "figure4.in~figure4.out@N": {
+   "file": "figure4.in-figure4.out.N.mp4",
+   "kind": "hold",
+   "camera": "lying",
+   "from": "figure4.in",
+   "to": "figure4.out",
+   "side": "N",
+   "moves": [
+    "figure4"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    94,
+    203,
+    377,
+    355
+   ]
+  },
+  "figure4.start.F>figure4.in.F@F": {
+   "file": "figure4.start.F_to_figure4.in.F.F.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "figure4.start.F",
+   "to": "figure4.in.F",
+   "side": "F",
+   "moves": [
+    "figure4"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    86,
+    207,
+    386,
+    397
+   ]
+  },
+  "figure4.start>figure4.in@N": {
+   "file": "figure4.start_to_figure4.in.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "figure4.start",
+   "to": "figure4.in",
+   "side": "N",
+   "moves": [
+    "figure4"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    86,
+    204,
+    406,
+    383
+   ]
+  },
+  "figure4.start>figure4.start.F@F": {
+   "file": "figure4.start_to_figure4.start.F.F.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "figure4.start",
+   "to": "figure4.start.F",
+   "side": "F",
+   "moves": [
+    "figure4"
+   ],
+   "seconds": 2,
+   "frames": 61,
+   "fps": 30,
+   "box": [
+    86,
+    221,
+    406,
+    397
+   ]
+  },
+  "fold>half@both": {
+   "file": "fold_to_half.both.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "fold",
+   "to": "half",
+   "side": "both",
+   "moves": [
+    "dogfold"
+   ],
+   "seconds": 4.9,
+   "frames": 148,
+   "fps": 30,
+   "box": [
+    167,
+    258,
+    390,
+    492
+   ]
+  },
+  "frog.a>frog.b@N": {
+   "file": "frog.a_to_frog.b.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "frog.a",
+   "to": "frog.b",
+   "side": "N",
+   "moves": [
+    "frog"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    69,
+    298,
+    443,
+    440
+   ]
+  },
+  "frog.b>frog.a@N": {
+   "file": "frog.b_to_frog.a.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "frog.b",
+   "to": "frog.a",
+   "side": "N",
+   "moves": [
+    "frog"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    69,
+    298,
+    443,
+    440
+   ]
+  },
+  "half>stand@both": {
+   "file": "half_to_stand.both.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "half",
+   "to": "stand",
+   "side": "both",
+   "moves": [
+    "dogfold"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    167,
+    47,
+    391,
+    479
+   ]
+  },
+  "halfsplit.a.F>halfsplit.b.F@F": {
+   "file": "halfsplit.a.F_to_halfsplit.b.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "halfsplit.a.F",
+   "to": "halfsplit.b.F",
+   "side": "F",
+   "moves": [
+    "halfsplit"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    86,
+    242,
+    437,
+    436
+   ]
+  },
+  "halfsplit.a>halfsplit.b@N": {
+   "file": "halfsplit.a_to_halfsplit.b.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "halfsplit.a",
+   "to": "halfsplit.b",
+   "side": "N",
+   "moves": [
+    "halfsplit"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    113,
+    242,
+    437,
+    446
+   ]
+  },
+  "halfsplit.b.F>halfsplit.a.F@F": {
+   "file": "halfsplit.b.F_to_halfsplit.a.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "halfsplit.b.F",
+   "to": "halfsplit.a.F",
+   "side": "F",
+   "moves": [
+    "halfsplit"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    86,
+    242,
+    437,
+    436
+   ]
+  },
+  "halfsplit.b>halfsplit.a.F@F": {
+   "file": "halfsplit.b_to_halfsplit.a.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "halfsplit.b",
+   "to": "halfsplit.a.F",
+   "side": "F",
+   "moves": [
+    "halfsplit"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    86,
+    238,
+    440,
+    446
+   ]
+  },
+  "halfsplit.b>halfsplit.a@N": {
+   "file": "halfsplit.b_to_halfsplit.a.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "halfsplit.b",
+   "to": "halfsplit.a",
+   "side": "N",
+   "moves": [
+    "halfsplit"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    113,
+    242,
+    437,
+    446
+   ]
+  },
+  "happybaby.in~happybaby.out@N": {
+   "file": "happybaby.in-happybaby.out.N.mp4",
+   "kind": "hold",
+   "camera": "lying",
+   "from": "happybaby.in",
+   "to": "happybaby.out",
+   "side": "N",
+   "moves": [
+    "happybaby"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    96,
+    176,
+    286,
+    355
+   ]
+  },
+  "happybaby.start>happybaby.in@N": {
+   "file": "happybaby.start_to_happybaby.in.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "happybaby.start",
+   "to": "happybaby.in",
+   "side": "N",
+   "moves": [
+    "happybaby"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    96,
+    147,
+    286,
+    355
+   ]
+  },
+  "hug.a>hug.b@N": {
+   "file": "hug.a_to_hug.b.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "hug.a",
+   "to": "hug.b",
+   "side": "N",
+   "moves": [
+    "hug"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    63,
+    47,
+    401,
+    479
+   ]
+  },
+  "hug.b>hug.a@N": {
+   "file": "hug.b_to_hug.a.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "hug.b",
+   "to": "hug.a",
+   "side": "N",
+   "moves": [
+    "hug"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    63,
+    47,
+    401,
+    479
+   ]
+  },
+  "leglift.a.F>leglift.b.F@F": {
+   "file": "leglift.a.F_to_leglift.b.F.F.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "leglift.a.F",
+   "to": "leglift.b.F",
+   "side": "F",
+   "moves": [
+    "leglift"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    87,
+    125,
+    469,
+    397
+   ]
+  },
+  "leglift.a>leglift.b@N": {
+   "file": "leglift.a_to_leglift.b.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "leglift.a",
+   "to": "leglift.b",
+   "side": "N",
+   "moves": [
+    "leglift"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    87,
+    129,
+    469,
+    397
+   ]
+  },
+  "leglift.b.F>leglift.a.F@F": {
+   "file": "leglift.b.F_to_leglift.a.F.F.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "leglift.b.F",
+   "to": "leglift.a.F",
+   "side": "F",
+   "moves": [
+    "leglift"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    87,
+    125,
+    469,
+    397
+   ]
+  },
+  "leglift.b>leglift.a.F@F": {
+   "file": "leglift.b_to_leglift.a.F.F.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "leglift.b",
+   "to": "leglift.a.F",
+   "side": "F",
+   "moves": [
+    "leglift"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    87,
+    129,
+    469,
+    397
+   ]
+  },
+  "leglift.b>leglift.a@N": {
+   "file": "leglift.b_to_leglift.a.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "leglift.b",
+   "to": "leglift.a",
+   "side": "N",
+   "moves": [
+    "leglift"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    87,
+    129,
+    469,
+    397
+   ]
+  },
+  "lizard.in.F~lizard.out.F@F": {
+   "file": "lizard.in.F-lizard.out.F.F.mp4",
+   "kind": "hold",
+   "camera": "floor",
+   "from": "lizard.in.F",
+   "to": "lizard.out.F",
+   "side": "F",
+   "moves": [
+    "lizard"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    80,
+    240,
+    435,
+    434
+   ]
+  },
+  "lizard.in>lizard.start@N": {
+   "file": "lizard.in_to_lizard.start.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lizard.in",
+   "to": "lizard.start",
+   "side": "N",
+   "moves": [
+    "lizard"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    107,
+    240,
+    439,
+    465
+   ]
+  },
+  "lizard.in~lizard.out@N": {
+   "file": "lizard.in-lizard.out.N.mp4",
+   "kind": "hold",
+   "camera": "floor",
+   "from": "lizard.in",
+   "to": "lizard.out",
+   "side": "N",
+   "moves": [
+    "lizard"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    107,
+    240,
+    435,
+    465
+   ]
+  },
+  "lizard.start.F>lizard.in.F@F": {
+   "file": "lizard.start.F_to_lizard.in.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lizard.start.F",
+   "to": "lizard.in.F",
+   "side": "F",
+   "moves": [
+    "lizard"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    80,
+    240,
+    439,
+    438
+   ]
+  },
+  "lizard.start>lizard.in@N": {
+   "file": "lizard.start_to_lizard.in.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lizard.start",
+   "to": "lizard.in",
+   "side": "N",
+   "moves": [
+    "lizard"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    107,
+    240,
+    439,
+    465
+   ]
+  },
+  "loop:armcircles": {
+   "file": "loop-armcircles.mp4",
+   "kind": "loop",
+   "camera": "standing",
+   "from": "armcircles.loop",
+   "to": "armcircles.loop",
+   "side": "both",
+   "moves": [
+    "armcircles"
+   ],
+   "seconds": 5,
+   "frames": 151,
+   "fps": 30,
+   "box": [
+    96,
+    28,
+    374,
+    479
+   ]
+  },
+  "loop:shake": {
+   "file": "loop-shake.mp4",
+   "kind": "loop",
+   "camera": "standing",
+   "from": "shakeA",
+   "to": "shakeB",
+   "side": "both",
+   "moves": [
+    "shake"
+   ],
+   "seconds": 3.2,
+   "frames": 97,
+   "fps": 30,
+   "box": [
+    168,
+    48,
+    321,
+    479
+   ]
+  },
+  "lowlunge.in.F~lowlunge.out.F@F": {
+   "file": "lowlunge.in.F-lowlunge.out.F.F.mp4",
+   "kind": "hold",
+   "camera": "floor",
+   "from": "lowlunge.in.F",
+   "to": "lowlunge.out.F",
+   "side": "F",
+   "moves": [
+    "lowlunge"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    86,
+    38,
+    401,
+    411
+   ]
+  },
+  "lowlunge.in>lowlunge.start@N": {
+   "file": "lowlunge.in_to_lowlunge.start.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lowlunge.in",
+   "to": "lowlunge.start",
+   "side": "N",
+   "moves": [
+    "lowlunge"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    108,
+    38,
+    469,
+    438
+   ]
+  },
+  "lowlunge.in~lowlunge.out@N": {
+   "file": "lowlunge.in-lowlunge.out.N.mp4",
+   "kind": "hold",
+   "camera": "floor",
+   "from": "lowlunge.in",
+   "to": "lowlunge.out",
+   "side": "N",
+   "moves": [
+    "lowlunge"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    113,
+    38,
+    378,
+    438
+   ]
+  },
+  "lowlunge.start.F>lowlunge.in.F@F": {
+   "file": "lowlunge.start.F_to_lowlunge.in.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lowlunge.start.F",
+   "to": "lowlunge.in.F",
+   "side": "F",
+   "moves": [
+    "lowlunge"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    86,
+    38,
+    469,
+    438
+   ]
+  },
+  "lowlunge.start>lowlunge.in@N": {
+   "file": "lowlunge.start_to_lowlunge.in.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lowlunge.start",
+   "to": "lowlunge.in",
+   "side": "N",
+   "moves": [
+    "lowlunge"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    108,
+    38,
+    469,
+    438
+   ]
+  },
+  "lungeDropF>lungeReachF@F": {
+   "file": "lungeDropF_to_lungeReachF.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lungeDropF",
+   "to": "lungeReachF",
+   "side": "F",
+   "moves": [
+    "wgs"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    75,
+    80,
+    464,
+    444
+   ]
+  },
+  "lungeDropN>lungeDropF@F": {
+   "file": "lungeDropN_to_lungeDropF.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lungeDropN",
+   "to": "lungeDropF",
+   "side": "F",
+   "moves": [
+    "wgs"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    75,
+    256,
+    439,
+    460
+   ]
+  },
+  "lungeDropN>lungeReachN@N": {
+   "file": "lungeDropN_to_lungeReachN.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lungeDropN",
+   "to": "lungeReachN",
+   "side": "N",
+   "moves": [
+    "wgs"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    102,
+    105,
+    439,
+    460
+   ]
+  },
+  "lungeReachF>lungeDropF@F": {
+   "file": "lungeReachF_to_lungeDropF.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lungeReachF",
+   "to": "lungeDropF",
+   "side": "F",
+   "moves": [
+    "wgs"
+   ],
+   "seconds": 4.1,
+   "frames": 124,
+   "fps": 30,
+   "box": [
+    75,
+    80,
+    464,
+    444
+   ]
+  },
+  "lungeReachN>lungeDropN@N": {
+   "file": "lungeReachN_to_lungeDropN.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lungeReachN",
+   "to": "lungeDropN",
+   "side": "N",
+   "moves": [
+    "wgs"
+   ],
+   "seconds": 4.1,
+   "frames": 124,
+   "fps": 30,
+   "box": [
+    102,
+    105,
+    439,
+    460
+   ]
+  },
+  "lungerock.a.F>lungerock.b.F@F": {
+   "file": "lungerock.a.F_to_lungerock.b.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lungerock.a.F",
+   "to": "lungerock.b.F",
+   "side": "F",
+   "moves": [
+    "lungerock"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    86,
+    70,
+    401,
+    411
+   ]
+  },
+  "lungerock.a>lungerock.b@N": {
+   "file": "lungerock.a_to_lungerock.b.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lungerock.a",
+   "to": "lungerock.b",
+   "side": "N",
+   "moves": [
+    "lungerock"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    113,
+    70,
+    378,
+    438
+   ]
+  },
+  "lungerock.b.F>lungerock.a.F@F": {
+   "file": "lungerock.b.F_to_lungerock.a.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lungerock.b.F",
+   "to": "lungerock.a.F",
+   "side": "F",
+   "moves": [
+    "lungerock"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    86,
+    70,
+    401,
+    411
+   ]
+  },
+  "lungerock.b>lungerock.a.F@F": {
+   "file": "lungerock.b_to_lungerock.a.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lungerock.b",
+   "to": "lungerock.a.F",
+   "side": "F",
+   "moves": [
+    "lungerock"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    86,
+    70,
+    380,
+    438
+   ]
+  },
+  "lungerock.b>lungerock.a@N": {
+   "file": "lungerock.b_to_lungerock.a.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "lungerock.b",
+   "to": "lungerock.a",
+   "side": "N",
+   "moves": [
+    "lungerock"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    113,
+    70,
+    378,
+    438
+   ]
+  },
+  "pigeon.in.F~pigeon.out.F@F": {
+   "file": "pigeon.in.F-pigeon.out.F.F.mp4",
+   "kind": "hold",
+   "camera": "floor",
+   "from": "pigeon.in.F",
+   "to": "pigeon.out.F",
+   "side": "F",
+   "moves": [
+    "pigeon"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    64,
+    180,
+    430,
+    450
+   ]
+  },
+  "pigeon.in>pigeon.start@N": {
+   "file": "pigeon.in_to_pigeon.start.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "pigeon.in",
+   "to": "pigeon.start",
+   "side": "N",
+   "moves": [
+    "pigeon"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    90,
+    180,
+    439,
+    438
+   ]
+  },
+  "pigeon.in~pigeon.out@N": {
+   "file": "pigeon.in-pigeon.out.N.mp4",
+   "kind": "hold",
+   "camera": "floor",
+   "from": "pigeon.in",
+   "to": "pigeon.out",
+   "side": "N",
+   "moves": [
+    "pigeon"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    90,
+    180,
+    430,
+    450
+   ]
+  },
+  "pigeon.start.F>pigeon.in.F@F": {
+   "file": "pigeon.start.F_to_pigeon.in.F.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "pigeon.start.F",
+   "to": "pigeon.in.F",
+   "side": "F",
+   "moves": [
+    "pigeon"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    64,
+    180,
+    439,
+    438
+   ]
+  },
+  "pigeon.start>pigeon.in@N": {
+   "file": "pigeon.start_to_pigeon.in.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "pigeon.start",
+   "to": "pigeon.in",
+   "side": "N",
+   "moves": [
+    "pigeon"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    90,
+    180,
+    439,
+    438
+   ]
+  },
+  "puppy.in~puppy.out@N": {
+   "file": "puppy.in-puppy.out.N.mp4",
+   "kind": "hold",
+   "camera": "floor",
+   "from": "puppy.in",
+   "to": "puppy.out",
+   "side": "N",
+   "moves": [
+    "puppy"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    121,
+    255,
+    463,
+    463
+   ]
+  },
+  "puppy.start>puppy.in@N": {
+   "file": "puppy.start_to_puppy.in.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "puppy.start",
+   "to": "puppy.in",
+   "side": "N",
+   "moves": [
+    "puppy"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    108,
+    255,
+    440,
+    451
+   ]
+  },
+  "ragdoll.a>ragdoll.b@N": {
+   "file": "ragdoll.a_to_ragdoll.b.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "ragdoll.a",
+   "to": "ragdoll.b",
+   "side": "N",
+   "moves": [
+    "ragdoll"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    179,
+    257,
+    338,
+    480
+   ]
+  },
+  "ragdoll.b>ragdoll.a@N": {
+   "file": "ragdoll.b_to_ragdoll.a.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "ragdoll.b",
+   "to": "ragdoll.a",
+   "side": "N",
+   "moves": [
+    "ragdoll"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    179,
+    257,
+    338,
+    480
+   ]
+  },
+  "rolldown.a>rolldown.b@N": {
+   "file": "rolldown.a_to_rolldown.b.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "rolldown.a",
+   "to": "rolldown.b",
+   "side": "N",
+   "moves": [
+    "rolldown"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    179,
+    47,
+    407,
+    482
+   ]
+  },
+  "rolldown.b>rolldown.a@N": {
+   "file": "rolldown.b_to_rolldown.a.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "rolldown.b",
+   "to": "rolldown.a",
+   "side": "N",
+   "moves": [
+    "rolldown"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    179,
+    47,
+    407,
+    482
+   ]
+  },
+  "seatedfold.in~seatedfold.out@N": {
+   "file": "seatedfold.in-seatedfold.out.N.mp4",
+   "kind": "hold",
+   "camera": "seated",
+   "from": "seatedfold.in",
+   "to": "seatedfold.out",
+   "side": "N",
+   "moves": [
+    "seatedfold"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    223,
+    215,
+    453,
+    412
+   ]
+  },
+  "seatedfold.start>seatedfold.in@N": {
+   "file": "seatedfold.start_to_seatedfold.in.N.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "seatedfold.start",
+   "to": "seatedfold.in",
+   "side": "N",
+   "moves": [
+    "seatedfold"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    223,
+    146,
+    441,
+    406
+   ]
+  },
+  "seatF>seatUp@both": {
+   "file": "seatF_to_seatUp.both.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "seatF",
+   "to": "seatUp",
+   "side": "both",
+   "moves": [
+    "hips9090"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    73,
+    131,
+    404,
+    392
+   ]
+  },
+  "seatN>seatUp@both": {
+   "file": "seatN_to_seatUp.both.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "seatN",
+   "to": "seatUp",
+   "side": "both",
+   "moves": [
+    "hips9090"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    92,
+    131,
+    393,
+    397
+   ]
+  },
+  "seatUp>seatF@both": {
+   "file": "seatUp_to_seatF.both.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "seatUp",
+   "to": "seatF",
+   "side": "both",
+   "moves": [
+    "hips9090"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    73,
+    131,
+    404,
+    392
+   ]
+  },
+  "seatUp>seatN@both": {
+   "file": "seatUp_to_seatN.both.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "seatUp",
+   "to": "seatN",
+   "side": "both",
+   "moves": [
+    "hips9090"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    92,
+    131,
+    393,
+    397
+   ]
+  },
+  "sidebend.f>sidebend.mid@N": {
+   "file": "sidebend.f_to_sidebend.mid.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "sidebend.f",
+   "to": "sidebend.mid",
+   "side": "N",
+   "moves": [
+    "sidebend"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    164,
+    32,
+    373,
+    480
+   ]
+  },
+  "sidebend.mid>sidebend.f@N": {
+   "file": "sidebend.mid_to_sidebend.f.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "sidebend.mid",
+   "to": "sidebend.f",
+   "side": "N",
+   "moves": [
+    "sidebend"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    164,
+    32,
+    373,
+    480
+   ]
+  },
+  "sidebend.mid>sidebend.n@N": {
+   "file": "sidebend.mid_to_sidebend.n.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "sidebend.mid",
+   "to": "sidebend.n",
+   "side": "N",
+   "moves": [
+    "sidebend"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    122,
+    32,
+    330,
+    480
+   ]
+  },
+  "sidebend.n>sidebend.mid@N": {
+   "file": "sidebend.n_to_sidebend.mid.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "sidebend.n",
+   "to": "sidebend.mid",
+   "side": "N",
+   "moves": [
+    "sidebend"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    122,
+    32,
+    330,
+    480
+   ]
+  },
+  "sideSit>beast@F": {
+   "file": "sideSit_to_beast.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "sideSit",
+   "to": "beast",
+   "side": "F",
+   "moves": [
+    "beastcrab"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    134,
+    186,
+    425,
+    436
+   ]
+  },
+  "sideSit>beast@N": {
+   "file": "sideSit_to_beast.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "sideSit",
+   "to": "beast",
+   "side": "N",
+   "moves": [
+    "beastcrab"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    95,
+    174,
+    425,
+    440
+   ]
+  },
+  "sideSit>crabF@F": {
+   "file": "sideSit_to_crabF.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "sideSit",
+   "to": "crabF",
+   "side": "F",
+   "moves": [
+    "beastcrab"
+   ],
+   "seconds": 2,
+   "frames": 61,
+   "fps": 30,
+   "box": [
+    81,
+    135,
+    393,
+    436
+   ]
+  },
+  "sideSit>crabN@N": {
+   "file": "sideSit_to_crabN.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "sideSit",
+   "to": "crabN",
+   "side": "N",
+   "moves": [
+    "beastcrab"
+   ],
+   "seconds": 2,
+   "frames": 61,
+   "fps": 30,
+   "box": [
+    95,
+    77,
+    455,
+    402
+   ]
+  },
+  "sky>skyLow@both": {
+   "file": "sky_to_skyLow.both.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "sky",
+   "to": "skyLow",
+   "side": "both",
+   "moves": [
+    "sky",
+    "skybow"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    174,
+    34,
+    339,
+    479
+   ]
+  },
+  "skyLow>bowRest@both": {
+   "file": "skyLow_to_bowRest.both.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "skyLow",
+   "to": "bowRest",
+   "side": "both",
+   "moves": [
+    "skybow"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    186,
+    47,
+    317,
+    499
+   ]
+  },
+  "skyLow>sky@both": {
+   "file": "skyLow_to_sky.both.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "skyLow",
+   "to": "sky",
+   "side": "both",
+   "moves": [
+    "sky",
+    "skybow"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    174,
+    34,
+    339,
+    479
+   ]
+  },
+  "squat.in~squat.out@N": {
+   "file": "squat.in-squat.out.N.mp4",
+   "kind": "hold",
+   "camera": "standing",
+   "from": "squat.in",
+   "to": "squat.out",
+   "side": "N",
+   "moves": [
+    "squat"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    189,
+    213,
+    320,
+    497
+   ]
+  },
+  "squat.start>squat.in@N": {
+   "file": "squat.start_to_squat.in.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "squat.start",
+   "to": "squat.in",
+   "side": "N",
+   "moves": [
+    "squat"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    189,
+    61,
+    323,
+    497
+   ]
+  },
+  "straddle.in~straddle.out@N": {
+   "file": "straddle.in-straddle.out.N.mp4",
+   "kind": "hold",
+   "camera": "seated",
+   "from": "straddle.in",
+   "to": "straddle.out",
+   "side": "N",
+   "moves": [
+    "straddle"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    223,
+    230,
+    460,
+    414
+   ]
+  },
+  "straddle.start>straddle.in@N": {
+   "file": "straddle.start_to_straddle.in.N.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "straddle.start",
+   "to": "straddle.in",
+   "side": "N",
+   "moves": [
+    "straddle"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    223,
+    160,
+    453,
+    414
+   ]
+  },
+  "supinetwist.in.F~supinetwist.out.F@F": {
+   "file": "supinetwist.in.F-supinetwist.out.F.F.mp4",
+   "kind": "hold",
+   "camera": "lying",
+   "from": "supinetwist.in.F",
+   "to": "supinetwist.out.F",
+   "side": "F",
+   "moves": [
+    "supinetwist"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    90,
+    257,
+    420,
+    385
+   ]
+  },
+  "supinetwist.in>supinetwist.start@N": {
+   "file": "supinetwist.in_to_supinetwist.start.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "supinetwist.in",
+   "to": "supinetwist.start",
+   "side": "N",
+   "moves": [
+    "supinetwist"
+   ],
+   "seconds": 2.9,
+   "frames": 88,
+   "fps": 30,
+   "box": [
+    73,
+    237,
+    406,
+    407
+   ]
+  },
+  "supinetwist.in~supinetwist.out@N": {
+   "file": "supinetwist.in-supinetwist.out.N.mp4",
+   "kind": "hold",
+   "camera": "lying",
+   "from": "supinetwist.in",
+   "to": "supinetwist.out",
+   "side": "N",
+   "moves": [
+    "supinetwist"
+   ],
+   "seconds": 4,
+   "frames": 121,
+   "fps": 30,
+   "box": [
+    82,
+    290,
+    361,
+    408
+   ]
+  },
+  "supinetwist.start.F>supinetwist.in.F@F": {
+   "file": "supinetwist.start.F_to_supinetwist.in.F.F.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "supinetwist.start.F",
+   "to": "supinetwist.in.F",
+   "side": "F",
+   "moves": [
+    "supinetwist"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    86,
+    231,
+    418,
+    398
+   ]
+  },
+  "supinetwist.start>supinetwist.in@N": {
+   "file": "supinetwist.start_to_supinetwist.in.N.mp4",
+   "kind": "move",
+   "camera": "lying",
+   "from": "supinetwist.start",
+   "to": "supinetwist.in",
+   "side": "N",
+   "moves": [
+    "supinetwist"
+   ],
+   "seconds": 3.9,
+   "frames": 118,
+   "fps": 30,
+   "box": [
+    73,
+    237,
+    406,
+    407
+   ]
+  },
+  "table>cow@both": {
+   "file": "table_to_cow.both.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "table",
+   "to": "cow",
+   "side": "both",
+   "moves": [
+    "catcow"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    108,
+    206,
+    439,
+    438
+   ]
+  },
+  "table>threadUnderF@F": {
+   "file": "table_to_threadUnderF.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "table",
+   "to": "threadUnderF",
+   "side": "F",
+   "moves": [
+    "thread"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    108,
+    249,
+    439,
+    448
+   ]
+  },
+  "table>threadUnderN@N": {
+   "file": "table_to_threadUnderN.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "table",
+   "to": "threadUnderN",
+   "side": "N",
+   "moves": [
+    "thread"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    108,
+    249,
+    439,
+    438
+   ]
+  },
+  "tabletop.a>tabletop.b@N": {
+   "file": "tabletop.a_to_tabletop.b.N.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "tabletop.a",
+   "to": "tabletop.b",
+   "side": "N",
+   "moves": [
+    "tabletop"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    80,
+    137,
+    381,
+    393
+   ]
+  },
+  "tabletop.b>tabletop.a@N": {
+   "file": "tabletop.b_to_tabletop.a.N.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "tabletop.b",
+   "to": "tabletop.a",
+   "side": "N",
+   "moves": [
+    "tabletop"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    80,
+    137,
+    381,
+    393
+   ]
+  },
+  "threadOpenF>threadUnderF@F": {
+   "file": "threadOpenF_to_threadUnderF.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "threadOpenF",
+   "to": "threadUnderF",
+   "side": "F",
+   "moves": [
+    "thread"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    108,
+    79,
+    439,
+    448
+   ]
+  },
+  "threadOpenN>table@N": {
+   "file": "threadOpenN_to_table.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "threadOpenN",
+   "to": "table",
+   "side": "N",
+   "moves": [
+    "thread"
+   ],
+   "seconds": 2.4,
+   "frames": 73,
+   "fps": 30,
+   "box": [
+    108,
+    88,
+    446,
+    444
+   ]
+  },
+  "threadOpenN>threadUnderN@N": {
+   "file": "threadOpenN_to_threadUnderN.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "threadOpenN",
+   "to": "threadUnderN",
+   "side": "N",
+   "moves": [
+    "thread"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    108,
+    88,
+    446,
+    464
+   ]
+  },
+  "threadUnderF>threadOpenF@F": {
+   "file": "threadUnderF_to_threadOpenF.F.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "threadUnderF",
+   "to": "threadOpenF",
+   "side": "F",
+   "moves": [
+    "thread"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    108,
+    79,
+    439,
+    448
+   ]
+  },
+  "threadUnderN>threadOpenN@N": {
+   "file": "threadUnderN_to_threadOpenN.N.mp4",
+   "kind": "move",
+   "camera": "floor",
+   "from": "threadUnderN",
+   "to": "threadOpenN",
+   "side": "N",
+   "moves": [
+    "thread"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    108,
+    88,
+    446,
+    464
+   ]
+  },
+  "wipers.f>wipers.mid@N": {
+   "file": "wipers.f_to_wipers.mid.N.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "wipers.f",
+   "to": "wipers.mid",
+   "side": "N",
+   "moves": [
+    "wipers"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    101,
+    129,
+    399,
+    397
+   ]
+  },
+  "wipers.mid>wipers.f@N": {
+   "file": "wipers.mid_to_wipers.f.N.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "wipers.mid",
+   "to": "wipers.f",
+   "side": "N",
+   "moves": [
+    "wipers"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    101,
+    129,
+    399,
+    397
+   ]
+  },
+  "wipers.mid>wipers.n@N": {
+   "file": "wipers.mid_to_wipers.n.N.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "wipers.mid",
+   "to": "wipers.n",
+   "side": "N",
+   "moves": [
+    "wipers"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    101,
+    129,
+    399,
+    397
+   ]
+  },
+  "wipers.n>wipers.mid@N": {
+   "file": "wipers.n_to_wipers.mid.N.mp4",
+   "kind": "move",
+   "camera": "seated",
+   "from": "wipers.n",
+   "to": "wipers.mid",
+   "side": "N",
+   "moves": [
+    "wipers"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    101,
+    129,
+    399,
+    397
+   ]
+  },
+  "ankle.a.F>ankle.a.F@F": {
+   "kind": "hold",
+   "still": {
+    "clip": "ankle.a.F>ankle.b.F@F",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "ankle.a.F",
+   "to": "ankle.a.F",
+   "side": "F",
+   "moves": [
+    "ankle"
+   ]
+  },
+  "ankle.a>ankle.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "ankle.a>ankle.b@N",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "ankle.a",
+   "to": "ankle.a",
+   "side": "N",
+   "moves": [
+    "ankle"
+   ]
+  },
+  "bowRest>bowRest@both": {
+   "kind": "hold",
+   "still": {
+    "clip": "bowRest>bowF@both",
+    "frame": 0
+   },
+   "camera": "standing",
+   "from": "bowRest",
+   "to": "bowRest",
+   "side": "both",
+   "moves": [
+    "bow"
+   ]
+  },
+  "bridge.a>bridge.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "bridge.a>bridge.b@N",
+    "frame": 0
+   },
+   "camera": "lying",
+   "from": "bridge.a",
+   "to": "bridge.a",
+   "side": "N",
+   "moves": [
+    "bridge"
+   ]
+  },
+  "calfraise.a>calfraise.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "calfraise.a>calfraise.b@N",
+    "frame": 0
+   },
+   "camera": "standing",
+   "from": "calfraise.a",
+   "to": "calfraise.a",
+   "side": "N",
+   "moves": [
+    "calfraise"
+   ]
+  },
+  "cobra.a>cobra.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "cobra.a>cobra.b@N",
+    "frame": 0
+   },
+   "camera": "lying",
+   "from": "cobra.a",
+   "to": "cobra.a",
+   "side": "N",
+   "moves": [
+    "cobra"
+   ]
+  },
+  "cossack.mid>cossack.mid@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "cossack.mid>cossack.f@N",
+    "frame": 0
+   },
+   "camera": "standing",
+   "from": "cossack.mid",
+   "to": "cossack.mid",
+   "side": "N",
+   "moves": [
+    "cossack"
+   ]
+  },
+  "dog>dog@both": {
+   "kind": "hold",
+   "still": {
+    "clip": "dog>fold@both",
+    "frame": 0
+   },
+   "camera": "standing",
+   "from": "dog",
+   "to": "dog",
+   "side": "both",
+   "moves": [
+    "dogfold"
+   ]
+  },
+  "dogpedal.n>dogpedal.n@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "dogpedal.n>dogpedal.f@N",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "dogpedal.n",
+   "to": "dogpedal.n",
+   "side": "N",
+   "moves": [
+    "dogpedal"
+   ]
+  },
+  "fold>fold@both": {
+   "kind": "hold",
+   "still": {
+    "clip": "fold>half@both",
+    "frame": 0
+   },
+   "camera": "standing",
+   "from": "fold",
+   "to": "fold",
+   "side": "both",
+   "moves": [
+    "dogfold"
+   ]
+  },
+  "frog.a>frog.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "frog.a>frog.b@N",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "frog.a",
+   "to": "frog.a",
+   "side": "N",
+   "moves": [
+    "frog"
+   ]
+  },
+  "halfsplit.a.F>halfsplit.a.F@F": {
+   "kind": "hold",
+   "still": {
+    "clip": "halfsplit.a.F>halfsplit.b.F@F",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "halfsplit.a.F",
+   "to": "halfsplit.a.F",
+   "side": "F",
+   "moves": [
+    "halfsplit"
+   ]
+  },
+  "halfsplit.a>halfsplit.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "halfsplit.a>halfsplit.b@N",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "halfsplit.a",
+   "to": "halfsplit.a",
+   "side": "N",
+   "moves": [
+    "halfsplit"
+   ]
+  },
+  "hug.a>hug.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "hug.a>hug.b@N",
+    "frame": 0
+   },
+   "camera": "standing",
+   "from": "hug.a",
+   "to": "hug.a",
+   "side": "N",
+   "moves": [
+    "hug"
+   ]
+  },
+  "leglift.a.F>leglift.a.F@F": {
+   "kind": "hold",
+   "still": {
+    "clip": "leglift.a.F>leglift.b.F@F",
+    "frame": 0
+   },
+   "camera": "lying",
+   "from": "leglift.a.F",
+   "to": "leglift.a.F",
+   "side": "F",
+   "moves": [
+    "leglift"
+   ]
+  },
+  "leglift.a>leglift.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "leglift.a>leglift.b@N",
+    "frame": 0
+   },
+   "camera": "lying",
+   "from": "leglift.a",
+   "to": "leglift.a",
+   "side": "N",
+   "moves": [
+    "leglift"
+   ]
+  },
+  "lizard.start>lizard.start.F@F": {
+   "kind": "hold",
+   "still": {
+    "clip": "lizard.start.F>lizard.in.F@F",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "lizard.start",
+   "to": "lizard.start.F",
+   "side": "F",
+   "moves": [
+    "lizard"
+   ]
+  },
+  "lowlunge.start>lowlunge.start.F@F": {
+   "kind": "hold",
+   "still": {
+    "clip": "lowlunge.start.F>lowlunge.in.F@F",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "lowlunge.start",
+   "to": "lowlunge.start.F",
+   "side": "F",
+   "moves": [
+    "lowlunge"
+   ]
+  },
+  "lungerock.a.F>lungerock.a.F@F": {
+   "kind": "hold",
+   "still": {
+    "clip": "lungerock.a.F>lungerock.b.F@F",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "lungerock.a.F",
+   "to": "lungerock.a.F",
+   "side": "F",
+   "moves": [
+    "lungerock"
+   ]
+  },
+  "lungerock.a>lungerock.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "lungerock.a>lungerock.b@N",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "lungerock.a",
+   "to": "lungerock.a",
+   "side": "N",
+   "moves": [
+    "lungerock"
+   ]
+  },
+  "pigeon.start>pigeon.start.F@F": {
+   "kind": "hold",
+   "still": {
+    "clip": "pigeon.start.F>pigeon.in.F@F",
+    "frame": 0
+   },
+   "camera": "floor",
+   "from": "pigeon.start",
+   "to": "pigeon.start.F",
+   "side": "F",
+   "moves": [
+    "pigeon"
+   ]
+  },
+  "ragdoll.a>ragdoll.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "ragdoll.a>ragdoll.b@N",
+    "frame": 0
+   },
+   "camera": "standing",
+   "from": "ragdoll.a",
+   "to": "ragdoll.a",
+   "side": "N",
+   "moves": [
+    "ragdoll"
+   ]
+  },
+  "rolldown.a>rolldown.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "rolldown.a>rolldown.b@N",
+    "frame": 0
+   },
+   "camera": "standing",
+   "from": "rolldown.a",
+   "to": "rolldown.a",
+   "side": "N",
+   "moves": [
+    "rolldown"
+   ]
+  },
+  "sidebend.mid>sidebend.mid@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "sidebend.mid>sidebend.f@N",
+    "frame": 0
+   },
+   "camera": "standing",
+   "from": "sidebend.mid",
+   "to": "sidebend.mid",
+   "side": "N",
+   "moves": [
+    "sidebend"
+   ]
+  },
+  "stand>stand@both": {
+   "kind": "hold",
+   "still": {
+    "clip": "half>stand@both",
+    "frame": 117
+   },
+   "camera": "standing",
+   "from": "stand",
+   "to": "stand",
+   "side": "both",
+   "moves": [
+    "settle",
+    "still"
+   ]
+  },
+  "supinetwist.start>supinetwist.start.F@F": {
+   "kind": "hold",
+   "still": {
+    "clip": "supinetwist.start.F>supinetwist.in.F@F",
+    "frame": 0
+   },
+   "camera": "lying",
+   "from": "supinetwist.start",
+   "to": "supinetwist.start.F",
+   "side": "F",
+   "moves": [
+    "supinetwist"
+   ]
+  },
+  "tabletop.a>tabletop.a@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "tabletop.a>tabletop.b@N",
+    "frame": 0
+   },
+   "camera": "seated",
+   "from": "tabletop.a",
+   "to": "tabletop.a",
+   "side": "N",
+   "moves": [
+    "tabletop"
+   ]
+  },
+  "wipers.mid>wipers.mid@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "wipers.mid>wipers.f@N",
+    "frame": 0
+   },
+   "camera": "seated",
+   "from": "wipers.mid",
+   "to": "wipers.mid",
+   "side": "N",
+   "moves": [
+    "wipers"
+   ]
+  }
+ }
+}

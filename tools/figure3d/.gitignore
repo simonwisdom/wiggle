@@ -1,0 +1,6 @@
+out/
+previews/
+render/assets/motion-data.js
+render/assets/preview-data.js
+render/renders/
+render/_main.html
