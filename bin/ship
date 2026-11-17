@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ship this worktree's branch: test it, put it on master, and deploy it to Cloudflare Workers
+# Ship this worktree's branch: test it, push it to main on GitHub (github.com/simonwisdom/wiggle, public), and deploy it to Cloudflare Workers
 # (wiggle.simonwisdom.workers.dev). Run from a session's own worktree, only after Simon says ship:
 #   bin/ship           ship it
 #   bin/ship --check   everything up to the merge (rebase, tests), then stop

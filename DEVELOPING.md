@@ -40,4 +40,4 @@ npm run deploy   # Cloudflare Workers, static assets only
 
 ## Ship
 
-It runs at https://wiggle.simonwisdom.workers.dev (Cloudflare Workers, static assets, free). Change it in a worktree on a branch, then run `bin/ship` from there after Simon says ship: it tests, moves `master` and deploys. On the phone it is a home-screen app that works offline; a new version arrives the next time it opens with signal.
+It runs at https://wiggle.simonwisdom.workers.dev (Cloudflare Workers, static assets, free). Change it in a worktree on a branch, then run `bin/ship` from there after Simon says ship: it tests, pushes `main` to github.com/simonwisdom/wiggle (public, so commits use the GitHub no-reply address set in this repo's git config) and deploys. On the phone it is a home-screen app that works offline; a new version arrives the next time it opens with signal.
