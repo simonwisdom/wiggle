@@ -333,18 +333,24 @@ test("gear tops up a session without taking it over", () => {
     }
 });
 
-test("more or fewer moves: the session has that many more or fewer, still chosen for you, and the length follows", () => {
+test("more or fewer moves: that many more or fewer, still chosen for you, in the same length, with fewer or more breaths each", () => {
+  const breaths = (s) => s.steps.reduce((n, x) => n + x.reps, 0) / s.steps.length;
   for (const mode of ["morning", "before", "after"]) for (const today of DAYS.slice(0, 3)) for (const minutes of [5, 10, 15]) {
     const base = build({ minutes, mode, today });
     for (const extra of [-2, -1, 1, 2]) {
       const s = build({ minutes, mode, today, extra });
       const want = Math.max(base.steps.filter((x) => x.fixed).length + 1, base.steps.length + extra);
-      assert.ok(Math.abs(s.steps.length - want) <= 1 && Math.sign(s.steps.length - base.steps.length) === Math.sign(extra),
-        `${mode} ${minutes} min ${today} ${extra}: ${base.steps.length} → ${s.steps.length}`);
-      assert.ok(extra > 0 ? s.seconds > base.seconds : s.seconds < base.seconds, `${mode} ${minutes} ${extra}: length should follow`);
+      const at = `${mode} ${minutes} min ${today} ${extra}: ${base.steps.length} → ${s.steps.length}, ${mins(s).toFixed(2)} min`;
+      assert.ok(extra > 0 ? s.steps.length <= want && s.steps.length >= base.steps.length : s.steps.length === want, at);
+      assert.ok(mins(s) <= minutes + 0.3, at);
+      if (s.steps.length !== base.steps.length) assert.ok(extra > 0 ? breaths(s) <= breaths(base) : breaths(s) >= breaths(base), `${at}: breaths per move`);
       if (MODES_FIXED[mode]) assert.strictEqual(s.steps[0].id, MODES_FIXED[mode]);
     }
   }
+  // One more move fits in a 10-minute morning, taken from the breaths of the others.
+  const b10 = build({ minutes: 10, today: DAYS[0] }), m10 = build({ minutes: 10, today: DAYS[0], extra: 1 });
+  assert.strictEqual(m10.steps.length, b10.steps.length + 1);
+  assert.ok(mins(m10) >= 9 && mins(m10) <= 10.3, mins(m10).toFixed(2));
 });
 
 test("fewer moves never drops below one move besides the opener and closer", () => {

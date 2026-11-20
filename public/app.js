@@ -171,8 +171,9 @@
   function renderTodayTitle() {
     $("today-title").textContent = `${COPY[session.mode].title}: ${session.steps.length} moves, about ${Math.round(session.seconds / 60)} min`;
   }
-  // More or fewer moves than the length gives: Wiggle still picks which, and the length follows. Held only
-  // until the length or the kind of session changes, or the app is closed.
+  // More or fewer moves than the length gives: Wiggle still picks which, and the length stays, so each move
+  // gets fewer breaths (or more). Fewer stops where the moves left can't fill the length. Held only until
+  // the length or the kind of session changes, or the app is closed.
   let extra = 0;
   function renderToday() {
     const level = levelFrom(state.history);
@@ -184,9 +185,10 @@
   function moreOrFewer(by) {
     const n = session.steps.length;
     extra += by; renderToday();
-    if (session.steps.length !== n) return;
+    const short = by < 0 && session.seconds < state.minutes * 60 - 45;
+    if (session.steps.length !== n && !short) return;
     extra -= by; renderToday();
-    toast(by > 0 ? "That's every move that fits today." : "That's as few as it goes.");
+    toast(by > 0 ? `That's every move that fits in ${state.minutes} min.` : `Fewer moves won't fill ${state.minutes} min.`);
   }
   $("more").addEventListener("click", () => moreOrFewer(1));
   $("fewer").addEventListener("click", () => moreOrFewer(-1));

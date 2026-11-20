@@ -504,29 +504,20 @@
   //   (and, before or after a workout, muscle groups);
   //   off: ids never to use; prefs: {id: "more" | "less"}; history: past sessions {day, ids, feel};
   //   today: "YYYY-MM-DD" (also seeds the variety); have: ids that can be drawn (all when left out).
-  //   extra: how many more moves (or, below 0, fewer) than that length would have. The moves are still
-  //   chosen for you: the session is built for a longer or shorter time until it has that many, so it
-  //   grows or shrinks by about a move's time each.
+  //   extra: how many more moves (or, below 0, fewer) than that length would have. The length stays: the
+  //   moves are still chosen for you, and each gets fewer breaths (or more) to fit. A move comes in only
+  //   while every move still fits at its fewest breaths.
   function build(opts = {}) {
     const extra = Math.round(+opts.extra || 0);
     const first = fitTo(opts);
     if (!extra || modeOf(first.mode).form) return first;
     const fixed = first.steps.filter((s) => s.fixed).length;
-    const want = Math.max(fixed + 1, first.steps.length + extra);
-    let best = first;
-    for (let k = 1; k <= 90; k++) {
-      const seconds = first.minutes * 60 + Math.sign(extra) * k * 15;
-      if (seconds < 60) break;
-      const s = fitTo(opts, seconds);
-      if (extra > 0 ? s.steps.length > best.steps.length : s.steps.length < best.steps.length && s.steps.length > fixed) best = s;
-      if (extra > 0 ? s.steps.length >= want : s.steps.length <= want) break;
-    }
-    return { ...best, extra };
+    return { ...fitTo(opts, Math.max(fixed + 1, first.steps.length + extra)), extra };
   }
-  function fitTo({ minutes = 10, focus = "all", mode = "morning", level = 0, off = [], prefs = {}, history = [], today = "2026-01-01", have = null, gear = [] } = {}, seconds) {
+  function fitTo({ minutes = 10, focus = "all", mode = "morning", level = 0, off = [], prefs = {}, history = [], today = "2026-01-01", have = null, gear = [] } = {}, count = 0) {
     if (!MODES[mode]) mode = "morning";
     const b = pace(level, mode);
-    const target = seconds || minutes * 60;
+    const target = minutes * 60;
     const tg = targetsOf(focus, mode);
     if (!tg.keys.length) focus = "all";
     const usable = (m) => (!have || have.includes(m.id)) && (!m.gear || gear.includes(m.gear));
@@ -552,7 +543,8 @@
       while (left.length && room()) {
         left = left.filter((m) => !gearFull(m));
         left.sort((x, y) => eff(y) - eff(x));
-        const i = left.findIndex((m) => used() + startSecs(m, b) <= target - 20);
+        const atMin = (m) => INTRO + [...moves, m].reduce((s, c) => s + startSecs(c, b), 0) <= target + 15;
+        const i = count ? (moves.length < count ? left.findIndex(atMin) : -1) : left.findIndex((m) => used() + startSecs(m, b) <= target - 20);
         if (i < 0) break;
         moves.push(left.splice(i, 1)[0]);
       }
@@ -568,7 +560,7 @@
         if (!moves.some((m) => !keepOf(m, mode) && works(m, one))) pick(pool.filter((m) => works(m, one)), () => moves.length === n);
       }
       pick(pool.filter((m) => works(m, tg)), () => true);
-      pick(pool.filter((m) => !works(m, tg)), () => !full());
+      pick(pool.filter((m) => !works(m, tg)), () => (count ? moves.length < count : !full()));
     } else pick(pool.slice(), () => true);
     moves.sort((x, y) => order(x, mode) - order(y, mode));
 
