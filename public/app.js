@@ -421,6 +421,9 @@
     const want3 = state.figure === "3d" && p3.available();
     if (want3 !== in3d) { in3d = want3; if (want3) p3.jump(); else p3.stop(); }
     const flat = want3 ? p3.frame(t, playing, look) : true;
+    // With 3D on, say why the figure is flat: this move has no 3D yet, or 3D couldn't load.
+    const why = state.figure !== "3d" ? "" : !p3.available() ? "3D couldn't load, so it's flat" : g.step >= 0 && p3.flatStep(g.step) ? "No 3D for this move yet" : "";
+    if ($("looknote").textContent !== why) { $("looknote").textContent = why; $("looknote").hidden = !why; }
     if (!flat) drawGear(gearId, null);
     else if (!g.motion || g.motion.mode === "hand") { paint(handFrame(mix(R[g.from], R[g.to], ease(x))), look); drawGear(gearId, null); }
     else { const { F, front } = segmentFrame(CLIPS, g.motion, x, t - g.t0, handFrame); paint(F, { ...look, front }); drawGear(gearId, F); }

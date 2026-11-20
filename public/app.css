@@ -181,6 +181,8 @@ symbol .fill { fill: currentColor; stroke: none; }
 .f3-head { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1000000; }
 /* Flat / 3D: a small switch in the figure's corner, where the figure is, not among the session's controls */
 .looksw { position: absolute; top: 8px; right: 8px; z-index: 2; display: flex; padding: 3px; border-radius: var(--r-pill); background: var(--card); border: 1px solid var(--line); font-size: 14px; font-weight: 700; color: var(--muted); }
+.looknote { position: absolute; top: 52px; right: 8px; z-index: 2; margin: 0; padding: 3px 10px; border-radius: var(--r-pill); background: var(--card); border: 1px solid var(--line); font-size: 13px; font-weight: 700; color: var(--muted); }
+.looknote[hidden] { display: none; }
 .looksw span { min-width: 44px; padding: 5px 10px; border-radius: var(--r-pill); text-align: center; }
 .looksw[data-on="flat"] [data-fig="flat"], .looksw[data-on="3d"] [data-fig="3d"] { background: var(--accent); color: var(--on-accent); }
 .fg { width: 100%; height: 100%; max-height: 300px; display: block; }

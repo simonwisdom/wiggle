@@ -15,8 +15,8 @@ for (const { key } of plan.voice) {
   const raw = execFileSync("ffmpeg", ["-loglevel", "error", "-f", "mp3", "-i", "-", "-f", "f32le", "-ar", String(RATE), "-ac", "1", "-"], { input: pack.subarray(off, off + len), maxBuffer: 1 << 26 });
   clips[key] = new Float32Array(raw.buffer, raw.byteOffset, raw.length / 4);
 }
-const pcm = mix(plan, clips).subarray(0, seconds * RATE);
+const pcm = mix(plan, clips).subarray(0, 2 * seconds * RATE); // stereo, interleaved
 const head = Buffer.alloc(44);
-head.write("RIFF"); head.writeUInt32LE(36 + pcm.length * 2, 4); head.write("WAVEfmt ", 8); head.writeUInt32LE(16, 16); head.writeUInt16LE(1, 20); head.writeUInt16LE(1, 22);
-head.writeUInt32LE(RATE, 24); head.writeUInt32LE(RATE * 2, 28); head.writeUInt16LE(2, 32); head.writeUInt16LE(16, 34); head.write("data", 36); head.writeUInt32LE(pcm.length * 2, 40);
+head.write("RIFF"); head.writeUInt32LE(36 + pcm.length * 2, 4); head.write("WAVEfmt ", 8); head.writeUInt32LE(16, 16); head.writeUInt16LE(1, 20); head.writeUInt16LE(2, 22);
+head.writeUInt32LE(RATE, 24); head.writeUInt32LE(RATE * 4, 28); head.writeUInt16LE(4, 32); head.writeUInt16LE(16, 34); head.write("data", 36); head.writeUInt32LE(pcm.length * 2, 40);
 fs.writeFileSync(out, Buffer.concat([head, Buffer.from(pcm.buffer, pcm.byteOffset, pcm.length * 2)]));

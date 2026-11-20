@@ -376,8 +376,8 @@
       how: "Sit on the roller, ankle over the other knee, lean toward the crossed leg. Roll a little back and forth.",
       cap: { a: "Breathe in: roll forward a little", b: "Breathe out: roll back, lean in" } },
     { id: "roll_calves", gear: "roller", name: "Foam roll: calves", type: "flow", areas: ["ankles"], position: "seated",
-      how: "Hands behind you, roller under the calves, hips up. Roll from the ankles to the knees.",
-      cap: { a: "Breathe in: roll down to the ankles", b: "Breathe out: roll up to the knees" } },
+      how: "Hands behind you, roller under one calf, the other foot on the floor, hips up. Roll from the ankle to the knee.", sides: true,
+      cap: { a: "Breathe in: roll down to the ankle", b: "Breathe out: roll up to the knee" } },
     // stick
     { id: "stick_hinge", gear: "stick", name: "Hip hinge with the stick", type: "flow", areas: ["hamstrings"], position: "standing",
       how: "Stick along the back, touching head, upper back and tailbone. Hinge forward with a flat back.",

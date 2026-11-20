@@ -87,56 +87,72 @@
   }
 
   const clamp = (x) => Math.max(-32768, Math.min(32767, x));
-  // The breath sound: a wave of soft, deep noise with a quiet hum inside it. It swells through the in-breath
-  // and ebbs through the out-breath as one continuous sound: breaths that follow each other never drop to
-  // silence between them. It fades in only where a run of breaths starts, and out only where it ends.
-  const FLOOR = 0.3;                 // how much of the sound stays at the bottom of a breath
-  const HUM = [174.6, 261.6, 349.2]; // one soft chord throughout, so the pitch never slides
+  // The breath sound, in stereo: a wave of soft, deep noise, with a binaural beat inside it (136 Hz in the
+  // left ear, 142 Hz in the right, heard in headphones as a slow 6-a-second pulse; on a speaker, a low hum).
+  // The wave swells through the in-breath and ebbs through the out-breath as one continuous sound; the beat
+  // swells and ebbs more, nearly to nothing at the bottom of a breath. Where one breath turns into the next,
+  // a soft note marks the turn: higher into an in-breath, lower into an out-breath. Pitches never slide.
+  // It fades in only where a run of breaths starts, and out only where it ends.
+  const FLOOR = 0.3;                 // how much of the wave stays at the bottom of a breath
+  const BEAT_FLOOR = 0.08;           // and how much of the beat
+  const BEAT = [136.1, 142.1];       // left, right
+  const TURN = { 1: 523.3, "-1": 392 }; // the note into an in-breath, into an out-breath
   function breaths(pcm, tones) {
-    let seed = 12345, a = 0, b = 0, c = 0; // the noise and its filter carry on from one breath into the next
+    let seed = 12345, a = 0, b = 0, c = 0, pl = 0, pr = 0; // the noise, its filter and the beat carry on from one breath into the next
     const noise = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 2147483648 - 1; };
     const near = (x, y) => Math.abs(x - y) < 0.05;
+    const N = pcm.length / 2, wl = 2 * Math.PI * BEAT[0] / RATE, wr = 2 * Math.PI * BEAT[1] / RATE;
     tones.forEach((g, k) => {
       const joined = k > 0 && near(tones[k - 1].t + tones[k - 1].d, g.t);
       const joins = k < tones.length - 1 && near(g.t + g.d, tones[k + 1].t);
       const n = Math.floor(g.d * RATE), start = Math.floor(g.t * RATE);
-      for (let i = 0; i < n && start + i < pcm.length; i++) {
-        const x = i / n, t = (start + i) / RATE, rise = (1 - Math.cos(Math.PI * x)) / 2;
+      for (let i = 0; i < n && start + i < N; i++) {
+        const x = i / n, rise = (1 - Math.cos(Math.PI * x)) / 2;
         const level = g.dir > 0 ? rise : 1 - rise;           // 0 at the bottom of the breath, 1 at the top
-        let env = FLOOR + (1 - FLOOR) * level;
-        if (!joined) env *= Math.min(1, (i / RATE) / 0.6);
-        if (!joins) env *= Math.min(1, ((n - i) / RATE) / 1.0);
+        let fade = 1;
+        if (!joined) fade *= Math.min(1, (i / RATE) / 0.6);
+        if (!joins) fade *= Math.min(1, ((n - i) / RATE) / 1.0);
+        const env = fade * (FLOOR + (1 - FLOOR) * level), benv = fade * (BEAT_FLOOR + (1 - BEAT_FLOOR) * level);
         const k1 = 1 - Math.exp(-2 * Math.PI * (180 + 520 * level) / RATE); // the wave opens as the breath fills
         a += k1 * (noise() - a); b += k1 * (a - b); c += k1 * (b - c);
-        let hum = 0;
-        HUM.forEach((f, h) => { hum += Math.sin(2 * Math.PI * f * t + 0.6 * Math.sin(2 * Math.PI * 0.35 * t + h)) / (h + 1.5); });
-        pcm[start + i] = clamp(pcm[start + i] + 32767 * env * (0.42 * c + 0.05 * hum));
+        pl += wl; pr += wr;
+        const wave = 0.42 * env * c;
+        const l = wave + 0.09 * benv * (Math.sin(pl) + 0.25 * Math.sin(2 * pl));
+        const r = wave + 0.09 * benv * (Math.sin(pr) + 0.25 * Math.sin(2 * pr));
+        // The turn: a soft bell-like note over the first half second of a breath that follows another.
+        let turn = 0;
+        if (joined && i < RATE * 0.6) { const u = i / RATE; turn = 0.07 * Math.min(1, u / 0.01) * Math.exp(-u / 0.15) * Math.sin(2 * Math.PI * TURN[g.dir] * u); }
+        const j = 2 * (start + i);
+        pcm[j] = clamp(pcm[j] + 32767 * (l + turn));
+        pcm[j + 1] = clamp(pcm[j + 1] + 32767 * (r + turn));
       }
     });
   }
+  // Add a mono sound to both channels.
+  function both(pcm, start, n, f) {
+    for (let i = 0; i < n && 2 * (start + i) + 1 < pcm.length; i++) { const v = f(i), j = 2 * (start + i); pcm[j] = clamp(pcm[j] + v); pcm[j + 1] = clamp(pcm[j + 1] + v); }
+  }
   function chime(pcm, t0) {
-    const n = Math.floor(0.8 * RATE), start = Math.floor(t0 * RATE);
-    for (let i = 0; i < n && start + i < pcm.length; i++) pcm[start + i] = clamp(pcm[start + i] + 6500 * Math.exp(-5 * i / n) * Math.sin(2 * Math.PI * 660 * i / RATE));
+    const n = Math.floor(0.8 * RATE);
+    both(pcm, Math.floor(t0 * RATE), n, (i) => 6500 * Math.exp(-5 * i / n) * Math.sin(2 * Math.PI * 660 * i / RATE));
   }
   function wav(pcm) {
     const head = new DataView(new ArrayBuffer(44));
     const str = (o, s) => { for (let i = 0; i < s.length; i++) head.setUint8(o + i, s.charCodeAt(i)); };
     str(0, "RIFF"); head.setUint32(4, 36 + pcm.length * 2, true); str(8, "WAVEfmt ");
-    head.setUint32(16, 16, true); head.setUint16(20, 1, true); head.setUint16(22, 1, true);
-    head.setUint32(24, RATE, true); head.setUint32(28, RATE * 2, true); head.setUint16(32, 2, true); head.setUint16(34, 16, true);
+    head.setUint32(16, 16, true); head.setUint16(20, 1, true); head.setUint16(22, 2, true); // stereo, interleaved
+    head.setUint32(24, RATE, true); head.setUint32(28, RATE * 4, true); head.setUint16(32, 4, true); head.setUint16(34, 16, true);
     str(36, "data"); head.setUint32(40, pcm.length * 2, true);
     return new Blob([head, pcm], { type: "audio/wav" }); // phones are little-endian, as WAV is
   }
 
-  // Mix a plan (what cues() returned) into samples. clips: {key: Float32Array at RATE}. Pure, so the tests use it.
+  // Mix a plan (what cues() returned) into stereo samples, left and right interleaved.
+  // clips: {key: Float32Array at RATE}. Pure, so the tests use it.
   function mix(plan, clips) {
-    const pcm = new Int16Array(Math.ceil(plan.total * RATE));
+    const pcm = new Int16Array(2 * Math.ceil(plan.total * RATE));
     breaths(pcm, plan.tones);
     for (const t of plan.chimes) chime(pcm, t);
-    for (const v of plan.voice) {
-      const data = clips[v.key], start = Math.floor(v.t * RATE);
-      for (let i = 0; i < data.length && start + i < pcm.length; i++) pcm[start + i] = clamp(pcm[start + i] + data[i] * 32767);
-    }
+    for (const v of plan.voice) { const data = clips[v.key]; both(pcm, Math.floor(v.t * RATE), data.length, (i) => data[i] * 32767); }
     return pcm;
   }
 
@@ -156,7 +172,7 @@
 
   // A moment of silence, to start the player inside the tap on Start: a phone only lets a page play
   // sound it started from a tap, and the real track takes a moment to build.
-  const silence = () => wav(new Int16Array(RATE / 4));
+  const silence = () => wav(new Int16Array(RATE / 2));
 
   const api = { RATE, COMMON, spoken, leads, cues, mix, load, buildTrack, silence };
   if (typeof module !== "undefined" && module.exports) module.exports = api;

@@ -307,6 +307,8 @@
       }
 
       P.available = () => P.ready && !P.broken && !!P.items;
+      // True when move `step` has no 3D at all, so it plays flat even with 3D on (the gear moves, the Qigong pieces).
+      P.flatStep = (step) => { const its = (P.items || []).filter((it) => it.seg.step === step && !it.seg.lead); return its.length > 0 && its.every((it) => it.kind === "flat"); };
       // Set the timeline to play (after a session starts, or the track is rebuilt, or a move is swapped).
       P.set = (segs, session) => {
         P.items = P.ready ? plan(segs, session, P.M) : null;

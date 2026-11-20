@@ -1,4 +1,5 @@
 const test = require("node:test");
+const left = (pcm) => pcm.filter((_, i) => i % 2 === 0); // the left ear of a stereo mix
 const assert = require("node:assert");
 const fs = require("node:fs");
 const path = require("node:path");
@@ -137,7 +138,7 @@ test("captions are read aloud without symbols", () => {
 test("the mix puts each sound where the plan says, and silence elsewhere", () => {
   const { mix, RATE } = require("../public/sound.js");
   const voice = new Float32Array(RATE).fill(0.5);
-  const pcm = mix({ total: 10, tones: [{ t: 2, d: 2, dir: 1 }], chimes: [5], voice: [{ t: 7, key: "a", d: 1 }] }, { a: voice });
+  const pcm = left(mix({ total: 10, tones: [{ t: 2, d: 2, dir: 1 }], chimes: [5], voice: [{ t: 7, key: "a", d: 1 }] }, { a: voice }));
   const loud = (t) => Math.max(...pcm.subarray(Math.floor(t * RATE), Math.floor((t + 0.5) * RATE)).map(Math.abs));
   assert.strictEqual(pcm.length, 10 * RATE);
   assert.strictEqual(loud(0.5), 0); assert.strictEqual(loud(6), 0); assert.strictEqual(loud(9), 0);
@@ -148,7 +149,7 @@ test("the breath sound is one continuous sound: no silence between an in-breath 
   const { mix, RATE } = require("../public/sound.js");
   // Two breaths in a row (4 s in, 6 s out, twice), then nothing.
   const tones = [{ t: 1, d: 4, dir: 1 }, { t: 5, d: 6, dir: -1 }, { t: 11, d: 4, dir: 1 }, { t: 15, d: 6, dir: -1 }];
-  const pcm = mix({ total: 24, tones, chimes: [], voice: [] }, {});
+  const pcm = left(mix({ total: 24, tones, chimes: [], voice: [] }, {}));
   const rms = (t, w) => { let s = 0; const a = Math.floor(t * RATE), n = Math.floor(w * RATE); for (let i = 0; i < n; i++) s += pcm[a + i] * pcm[a + i]; return Math.sqrt(s / n); };
   assert.strictEqual(rms(0.2, 0.5), 0, "silent before the first breath");
   assert.strictEqual(rms(22, 1), 0, "silent after the last");
@@ -159,6 +160,27 @@ test("the breath sound is one continuous sound: no silence between an in-breath 
   // And it still breathes: fuller at the top of the breath than at the bottom.
   assert.ok(rms(4.5, 1) > 1.8 * rms(10.5, 1), `top ${rms(4.5, 1).toFixed(0)}, bottom ${rms(10.5, 1).toFixed(0)}`);
   // A breath on its own fades in and out rather than starting or stopping dead.
-  const one = mix({ total: 8, tones: [{ t: 1, d: 4, dir: -1 }], chimes: [], voice: [] }, {});
+  const one = left(mix({ total: 8, tones: [{ t: 1, d: 4, dir: -1 }], chimes: [], voice: [] }, {}));
   assert.ok(Math.abs(one[Math.floor(1.01 * RATE)]) < 300 && Math.abs(one[Math.floor(4.99 * RATE)]) < 300);
+});
+
+test("the breath has a binaural beat: the two ears differ in the breath, never in the voice or chime, and the beat swells with the breath", () => {
+  const { mix, RATE } = require("../public/sound.js");
+  const voice = new Float32Array(RATE).fill(0.3);
+  const pcm = mix({ total: 20, tones: [{ t: 1, d: 4, dir: 1 }, { t: 5, d: 6, dir: -1 }], chimes: [14], voice: [{ t: 16, key: "a", d: 1 }] }, { a: voice });
+  const diff = (t, w) => { let s = 0; const a = Math.floor(t * RATE), n = Math.floor(w * RATE); for (let i = a; i < a + n; i++) s += (pcm[2 * i] - pcm[2 * i + 1]) ** 2; return Math.sqrt(s / n); };
+  assert.ok(diff(4.5, 0.5) > 300, `top of the breath: ${diff(4.5, 0.5).toFixed(0)}`);
+  assert.ok(diff(4.5, 0.5) > 4 * diff(10.3, 0.4), `swells: top ${diff(4.5, 0.5).toFixed(0)}, bottom ${diff(10.3, 0.4).toFixed(0)}`);
+  assert.strictEqual(diff(14, 0.5), 0, "the chime is the same in both ears");
+  assert.strictEqual(diff(16, 0.5), 0, "the voice is the same in both ears");
+});
+
+test("a soft note marks each turn between breaths, and none where a run of breaths starts", () => {
+  const { mix, RATE } = require("../public/sound.js");
+  const tones = [{ t: 1, d: 4, dir: 1 }, { t: 5, d: 6, dir: -1 }, { t: 11, d: 4, dir: 1 }];
+  const withTurns = left(mix({ total: 16, tones, chimes: [], voice: [] }, {}));
+  const peak = (p, t) => { let m = 0; for (let i = Math.floor(t * RATE); i < Math.floor((t + 0.15) * RATE); i++) m = Math.max(m, Math.abs(p[i])); return m; };
+  assert.ok(peak(withTurns, 5.02) > 1500, `turn into the out-breath: ${peak(withTurns, 5.02)}`);
+  assert.ok(peak(withTurns, 11.02) > 1500, `turn into the in-breath: ${peak(withTurns, 11.02)}`);
+  assert.ok(Math.abs(withTurns[Math.floor(1.01 * RATE)]) < 300, "no note at the start of a run");
 });
