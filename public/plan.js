@@ -42,11 +42,11 @@
   // moves prepare or release it, and the moves that work it most directly (they come up first).
   const MUSCLES = {
     chest: { label: "Chest", areas: ["shoulders", "upperback"], moves: ["hug", "tabletop", "puppy", "cobra", "skybow", "stick_behind", "stick_pass", "gun_chest"] },
-    back: { label: "Back", areas: ["upperback", "spine"], moves: ["child", "puppy", "thread", "catcow", "supinetwist", "rolldown", "roll_upperback", "roll_tspine", "roll_lats", "stick_twist", "stick_side"] },
+    back: { label: "Back", areas: ["upperback", "spine"], moves: ["child", "puppy", "thread", "squatrot", "catcow", "supinetwist", "rolldown", "roll_upperback", "roll_tspine", "roll_lats", "stick_twist", "stick_side"] },
     shoulders: { label: "Shoulders", areas: ["shoulders"], moves: ["armcircles", "thread", "skybow", "beastcrab", "hug", "stick_pass", "stick_behind", "roll_lats", "gun_traps"] },
     arms: { label: "Arms", areas: ["shoulders"], moves: ["tabletop", "puppy", "armcircles", "skybow"] },
     core: { label: "Core", areas: ["spine"], moves: ["cobra", "bridge", "sidebend", "supinetwist", "catcow", "stick_twist", "stick_side"] },
-    glutes: { label: "Glutes", areas: ["hips"], moves: ["figure4", "pigeon", "hips9090", "bridge", "squat", "roll_glutes", "gun_glutes"] },
+    glutes: { label: "Glutes", areas: ["hips"], moves: ["figure4", "pigeon", "hips9090", "bridge", "squat", "squatrot", "roll_glutes", "gun_glutes"] },
     quads: { label: "Quads", areas: ["hipflexors", "ankles"], moves: ["lowlunge", "lungerock", "lizard", "squat", "cossack", "wgs", "roll_quads", "gun_quads"] },
     hamstrings: { label: "Hamstrings", areas: ["hamstrings"], moves: ["leglift", "halfsplit", "seatedfold", "ragdoll", "dogfold", "roll_hams", "gun_hams", "stick_hinge"] },
     adductors: { label: "Inner thighs", areas: ["adductors", "hips"], moves: ["butterfly", "straddle", "frog", "cossack", "happybaby"] },
@@ -330,6 +330,9 @@
     { id: "cossack", name: "Cossack shift", type: "alt", demanding: true, areas: ["adductors", "hips", "ankles"], position: "standing",
       how: "Wide stance. Sit into one leg, the other straight, then shift across.",
       cap: { mid: "Breathe in: back through the middle", n: "Breathe out: sit into one side", f: "Breathe out: sit into the other side" } },
+    { id: "squatrot", name: "Squat with rotation", type: "alt", areas: ["upperback", "hips", "ankles"], position: "standing",
+      how: "Sit in a deep squat, hands down. Keep one hand by the foot, turn and reach the other arm to the sky.",
+      cap: { mid: "Breathe in: both hands down", n: "Breathe out: turn and reach one arm up", f: "Breathe out: turn and reach the other arm up" } },
     { id: "ragdoll", name: "Ragdoll fold", type: "flow", areas: ["hamstrings"], position: "standing",
       how: "Fold forward, hold the elbows. Bend and straighten the knees.",
       cap: { a: "Breathe in: bend the knees", b: "Breathe out: straighten the legs" } },
