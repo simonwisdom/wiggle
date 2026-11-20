@@ -10,7 +10,7 @@
   "headHeight",
   "tiltDeg"
  ],
- "totalBytes": 5424386,
+ "totalBytes": 5598982,
  "clips": {
   "ankle.a.F>ankle.b.F@F": {
    "file": "ankle.a.F_to_ankle.b.F.F.mp4",
@@ -2178,6 +2178,86 @@
     497
    ]
   },
+  "squatrot.f>squatrot.mid@N": {
+   "file": "squatrot.f_to_squatrot.mid.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "squatrot.f",
+   "to": "squatrot.mid",
+   "side": "N",
+   "moves": [
+    "squatrot"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    113,
+    168,
+    351,
+    498
+   ]
+  },
+  "squatrot.mid>squatrot.f@N": {
+   "file": "squatrot.mid_to_squatrot.f.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "squatrot.mid",
+   "to": "squatrot.f",
+   "side": "N",
+   "moves": [
+    "squatrot"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    113,
+    168,
+    351,
+    498
+   ]
+  },
+  "squatrot.mid>squatrot.n@N": {
+   "file": "squatrot.mid_to_squatrot.n.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "squatrot.mid",
+   "to": "squatrot.n",
+   "side": "N",
+   "moves": [
+    "squatrot"
+   ],
+   "seconds": 4.7,
+   "frames": 142,
+   "fps": 30,
+   "box": [
+    156,
+    168,
+    390,
+    498
+   ]
+  },
+  "squatrot.n>squatrot.mid@N": {
+   "file": "squatrot.n_to_squatrot.mid.N.mp4",
+   "kind": "move",
+   "camera": "standing",
+   "from": "squatrot.n",
+   "to": "squatrot.mid",
+   "side": "N",
+   "moves": [
+    "squatrot"
+   ],
+   "seconds": 3.3,
+   "frames": 100,
+   "fps": 30,
+   "box": [
+    156,
+    168,
+    390,
+    498
+   ]
+  },
   "straddle.in~straddle.out@N": {
    "file": "straddle.in-straddle.out.N.mp4",
    "kind": "hold",
@@ -2932,6 +3012,20 @@
    "side": "N",
    "moves": [
     "sidebend"
+   ]
+  },
+  "squatrot.mid>squatrot.mid@N": {
+   "kind": "hold",
+   "still": {
+    "clip": "squatrot.mid>squatrot.f@N",
+    "frame": 0
+   },
+   "camera": "standing",
+   "from": "squatrot.mid",
+   "to": "squatrot.mid",
+   "side": "N",
+   "moves": [
+    "squatrot"
    ]
   },
   "stand>stand@both": {
