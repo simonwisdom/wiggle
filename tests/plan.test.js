@@ -5,6 +5,7 @@ const { build, swap, timeline, levelFrom, lastDone, MOVES, AREAS, POSITIONS, sec
 const mins = (s) => s.seconds / 60;
 const ids = (s) => s.steps.map((x) => x.id);
 const reps = (s, id) => (s.steps.find((x) => x.id === id) || {}).reps;
+const MODES_FIXED = { morning: "catcow", before: "catcow" };
 const DAYS = ["2026-11-10", "2026-11-11", "2026-11-12", "2026-11-13", "2026-11-14", "2026-11-15", "2026-11-16"];
 
 test("the library has about 40 moves, each tagged with known areas and a position", () => {
@@ -330,4 +331,37 @@ test("gear tops up a session without taking it over", () => {
       for (let i = 0; i < s.steps.length; i++) s = swap(s, i) || s;
       assert.ok(gearN(s) <= cap, `${at}, after swaps: ${gearN(s)} gear moves`);
     }
+});
+
+test("more or fewer moves: the session has that many more or fewer, still chosen for you, and the length follows", () => {
+  for (const mode of ["morning", "before", "after"]) for (const today of DAYS.slice(0, 3)) for (const minutes of [5, 10, 15]) {
+    const base = build({ minutes, mode, today });
+    for (const extra of [-2, -1, 1, 2]) {
+      const s = build({ minutes, mode, today, extra });
+      const want = Math.max(base.steps.filter((x) => x.fixed).length + 1, base.steps.length + extra);
+      assert.ok(Math.abs(s.steps.length - want) <= 1 && Math.sign(s.steps.length - base.steps.length) === Math.sign(extra),
+        `${mode} ${minutes} min ${today} ${extra}: ${base.steps.length} → ${s.steps.length}`);
+      assert.ok(extra > 0 ? s.seconds > base.seconds : s.seconds < base.seconds, `${mode} ${minutes} ${extra}: length should follow`);
+      if (MODES_FIXED[mode]) assert.strictEqual(s.steps[0].id, MODES_FIXED[mode]);
+    }
+  }
+});
+
+test("fewer moves never drops below one move besides the opener and closer", () => {
+  const s = build({ minutes: 5, today: DAYS[0], extra: -20 });
+  assert.ok(s.steps.filter((x) => !x.fixed).length >= 1, ids(s).join());
+});
+
+test("qigong ignores more or fewer: it is always the whole form", () => {
+  assert.deepStrictEqual(ids(build({ minutes: 10, mode: "qigong", today: DAYS[0], extra: 2 })), ids(build({ minutes: 10, mode: "qigong", today: DAYS[0] })));
+});
+
+test("upper and lower body cover every area and muscle group between them, with no unknown names", () => {
+  const { HALVES, MUSCLES } = require("../public/plan.js");
+  const areas = [...HALVES.upper.areas, ...HALVES.lower.areas], muscles = [...HALVES.upper.muscles, ...HALVES.lower.muscles];
+  assert.deepStrictEqual(areas.slice().sort(), Object.keys(AREAS).sort());
+  assert.deepStrictEqual(muscles.slice().sort(), Object.keys(MUSCLES).sort());
+  const s = build({ minutes: 10, today: DAYS[0], focus: HALVES.lower.areas });
+  const lowerMoves = s.steps.filter((x) => !x.fixed && MOVES.find((m) => m.id === x.id).areas.some((a) => HALVES.lower.areas.includes(a)));
+  assert.ok(lowerMoves.length >= s.steps.filter((x) => !x.fixed).length * 0.6, ids(s).join());
 });

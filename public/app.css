@@ -111,12 +111,11 @@ symbol .fill { fill: currentColor; stroke: none; }
 .bm-l { fill: none; stroke: var(--soft); stroke-linecap: round; stroke-linejoin: round; }
 .bm-spot { fill: var(--card); stroke: var(--accent); stroke-width: 2; transition: fill 0.15s, stroke 0.15s; }
 .bm-spot.on { fill: var(--out); stroke: var(--out); }
-.bm-tag, .bm-all { position: absolute; z-index: 1; min-height: 30px; padding: 0 10px; border-radius: var(--r-pill); border: 1.5px solid var(--line); background: var(--bg); font-size: 13px; font-weight: 700; white-space: nowrap; transition: background 0.15s, border-color 0.15s, color 0.15s; }
-.bm-tag::after, .bm-all::after { content: ""; position: absolute; inset: -6px -2px; } /* a bigger area to tap than the label shows */
+.bm-tag { position: absolute; z-index: 1; min-height: 30px; padding: 0 10px; border-radius: var(--r-pill); border: 1.5px solid var(--line); background: var(--bg); font-size: 13px; font-weight: 700; white-space: nowrap; transition: background 0.15s, border-color 0.15s, color 0.15s; }
+.bm-tag::after { content: ""; position: absolute; inset: -6px -2px; } /* a bigger area to tap than the label shows */
 .bm-l.bm-tag, .bm-tag.bm-l { left: 8px; }
 .bm-tag.bm-r { right: 8px; }
-.bm-all { top: 8px; right: 8px; }
-.bm-tag[aria-checked="true"], .bm-all[aria-checked="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.bm-tag[aria-checked="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 #home .today, #home .today + .pick { margin-top: var(--section); }
 .today #mode-note { margin-top: 2px; }
 .note { margin-top: 8px; }
@@ -127,6 +126,10 @@ symbol .fill { fill: currentColor; stroke: none; }
 .today h2 { margin-bottom: 2px; }
 .adjust { font-size: 15px; margin-bottom: 4px; }
 .adjust:empty { display: none; }
+.halves { margin-bottom: 10px; }
+#home .halves button { font-size: 15px; }
+.morefew { display: flex; gap: 8px; margin-top: 10px; }
+.morefew[hidden] { display: none; }
 .moves { list-style: none; margin-top: 8px; }
 .moves li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
 .thumb { width: 52px; height: 40px; flex-shrink: 0; }

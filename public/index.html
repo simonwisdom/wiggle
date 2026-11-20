@@ -62,6 +62,11 @@
 
     <section class="pick">
       <h2 id="focus-title"></h2>
+      <div class="seg halves" id="halves" role="group" aria-label="Pick a whole half">
+        <button role="checkbox" data-half="all">Whole body</button>
+        <button role="checkbox" data-half="upper">Upper body</button>
+        <button role="checkbox" data-half="lower">Lower body</button>
+      </div>
       <!-- Pick on the body: a label for each area or muscle group, joined by a line to its spot on the figure -->
       <div class="bodymap" id="focuses" role="group" aria-labelledby="focus-title">
         <svg class="bm-lead" id="bm-lead" aria-hidden="true"></svg>
@@ -86,6 +91,10 @@
       <h2 id="today-title"></h2>
       <p id="mode-note" class="muted small"></p>
       <p id="adjust" class="muted adjust"></p>
+      <div class="morefew" id="morefew">
+        <button id="fewer" class="swap" aria-label="Fewer moves">− Fewer moves</button>
+        <button id="more" class="swap" aria-label="More moves">+ More moves</button>
+      </div>
       <ol id="today-list" class="moves"></ol>
     </section>
 

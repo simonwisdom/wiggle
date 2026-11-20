@@ -52,6 +52,11 @@
     adductors: { label: "Inner thighs", areas: ["adductors", "hips"], moves: ["butterfly", "straddle", "frog", "cossack", "happybaby"] },
     calves: { label: "Calves", areas: ["ankles"], moves: ["calfraise", "dogpedal", "ankle", "dogfold", "roll_calves", "gun_calves"] },
   };
+  // Upper and lower body, each picked with one tap: the areas (morning) or muscle groups (around a workout) in each half.
+  const HALVES = {
+    upper: { label: "Upper body", areas: ["shoulders", "upperback", "spine"], muscles: ["chest", "back", "shoulders", "arms", "core"] },
+    lower: { label: "Lower body", areas: ["hips", "hipflexors", "adductors", "hamstrings", "ankles"], muscles: ["glutes", "quads", "adductors", "hamstrings", "calves"] },
+  };
   // Floor first, then up to standing. Cat–cow opens and Stand still closes every session.
   const POSITIONS = { lying: 1, seated: 2, allfours: 3, kneeling: 4, rising: 5, standing: 6 };
 
@@ -499,10 +504,29 @@
   //   (and, before or after a workout, muscle groups);
   //   off: ids never to use; prefs: {id: "more" | "less"}; history: past sessions {day, ids, feel};
   //   today: "YYYY-MM-DD" (also seeds the variety); have: ids that can be drawn (all when left out).
-  function build({ minutes = 10, focus = "all", mode = "morning", level = 0, off = [], prefs = {}, history = [], today = "2026-01-01", have = null, gear = [] } = {}) {
+  //   extra: how many more moves (or, below 0, fewer) than that length would have. The moves are still
+  //   chosen for you: the session is built for a longer or shorter time until it has that many, so it
+  //   grows or shrinks by about a move's time each.
+  function build(opts = {}) {
+    const extra = Math.round(+opts.extra || 0);
+    const first = fitTo(opts);
+    if (!extra || modeOf(first.mode).form) return first;
+    const fixed = first.steps.filter((s) => s.fixed).length;
+    const want = Math.max(fixed + 1, first.steps.length + extra);
+    let best = first;
+    for (let k = 1; k <= 90; k++) {
+      const seconds = first.minutes * 60 + Math.sign(extra) * k * 15;
+      if (seconds < 60) break;
+      const s = fitTo(opts, seconds);
+      if (extra > 0 ? s.steps.length > best.steps.length : s.steps.length < best.steps.length && s.steps.length > fixed) best = s;
+      if (extra > 0 ? s.steps.length >= want : s.steps.length <= want) break;
+    }
+    return { ...best, extra };
+  }
+  function fitTo({ minutes = 10, focus = "all", mode = "morning", level = 0, off = [], prefs = {}, history = [], today = "2026-01-01", have = null, gear = [] } = {}, seconds) {
     if (!MODES[mode]) mode = "morning";
     const b = pace(level, mode);
-    const target = minutes * 60;
+    const target = seconds || minutes * 60;
     const tg = targetsOf(focus, mode);
     if (!tg.keys.length) focus = "all";
     const usable = (m) => (!have || have.includes(m.id)) && (!m.gear || gear.includes(m.gear));
@@ -566,7 +590,7 @@
     }
 
     const steps = moves.map((m) => stepOf(m, reps[m.id], b, mode));
-    return { minutes, focus, mode, level, pace: b, steps, seconds: total(), off, prefs, have, gear, skipped: [] };
+    return { minutes, focus, mode, level, pace: b, steps, seconds: total(), off, prefs, have, gear, skipped: [], extra: 0 };
   }
 
   // A session that is a fixed form (Qigong): every piece in its order, whatever was picked; the minutes
@@ -641,7 +665,7 @@
     return { segs, total: t };
   }
 
-  const api = { MOVES, GEAR, AREAS, FOCUS, MUSCLES, POSITIONS, MODES, build, swap, timeline, levelFrom, secondsOf, lastDone };
+  const api = { MOVES, GEAR, AREAS, FOCUS, MUSCLES, HALVES, POSITIONS, MODES, build, swap, timeline, levelFrom, secondsOf, lastDone };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.PLAN = api;
 })(typeof window !== "undefined" ? window : globalThis);

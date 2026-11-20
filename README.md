@@ -21,11 +21,11 @@
 
 - **Four kinds of session.** Morning goes from the floor up to standing. Warm-up uses moving stretches on a quicker breath. Cool-down uses long holds on a slow breath. Qigong plays the Eight Brocades in their usual order.
 - **5, 10 or 15 minutes.** Each day it picks moves you haven't done lately, from 38 no-equipment moves, and orders them so you never jump from standing to the floor and back.
-- **Follows your focus.** Tap the areas that feel tight, or the muscle groups you're training, on a body map. Most of the session works those.
+- **Follows your focus.** Tap the areas that feel tight, or the muscle groups you're training, on a body map, or the whole upper or lower body in one tap. Most of the session works those.
 - **Your gear, if you have it.** Add a foam roller, a stick or a massage gun and it tops up the session with moves for them.
 - **Moves like a person.** Each move is traced from real movement, so the figure reaches, rolls and turns the way you do. Switch to a 3D figure if you like.
 - **Eyes optional.** A voice names each move, a soft sound rises on the in-breath and falls on the out-breath, and a chime marks each change. It keeps going with the phone locked or in a pocket, and the headphone buttons pause and skip.
-- **Learns from how it felt.** Tell it Easy, About right or Hard. Swap any move, or ask for more, less or never.
+- **Learns from how it felt.** Tell it Easy, About right or Hard. Ask for more or fewer moves and it picks them, swap any move, or ask for one more, less or never.
 - **Private.** No account. Your history stays in your phone's browser.
 
 ## Run it yourself

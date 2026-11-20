@@ -4,7 +4,7 @@
   const LOOK = window.LOOK;
   const CLIPS = window.CLIPS || {};
   const { annotate, segmentFrame, playable, poseOf, loopOf, frameAt } = window.CLIPPLAY;
-  const { build, swap, timeline, levelFrom, MOVES, MODES, AREAS, MUSCLES, GEAR } = window.PLAN;
+  const { build, swap, timeline, levelFrom, MOVES, MODES, AREAS, MUSCLES, GEAR, HALVES } = window.PLAN;
   const SOUND = window.SOUND;
   const GEARDRAW = window.GEARDRAW;
   const $ = (id) => document.getElementById(id);
@@ -126,8 +126,11 @@
   function renderBody() {
     const map = $("focuses"), on = picked(), at = SPOTS[state.mode === "morning" ? "morning" : "muscles"];
     map.querySelectorAll("button").forEach((b) => b.remove());
-    const all = `<button class="bm-all" role="checkbox" data-focus="all" aria-checked="${!on.length}">${state.mode === "morning" ? "Everything" : "Whole body"}</button>`;
-    map.insertAdjacentHTML("beforeend", all + choices().filter(([k]) => at[k]).map(([k, label]) => {
+    // Whole body, Upper body or Lower body: one tap picks that whole half (or clears the picks).
+    const half = (k) => (k === "all" ? [] : HALVES[k][state.mode === "morning" ? "areas" : "muscles"]);
+    const same = (a, b) => a.length === b.length && a.every((x) => b.includes(x));
+    for (const b of $("halves").children) b.setAttribute("aria-checked", String(same(on, half(b.dataset.half))));
+    map.insertAdjacentHTML("beforeend", choices().filter(([k]) => at[k]).map(([k, label]) => {
       const [side, y] = at[k];
       return `<button class="bm-tag bm-${side}" role="checkbox" data-focus="${k}" aria-checked="${on.includes(k)}" style="top:${Math.round(4 + y * BODY_S) - 15}px">${label}</button>`;
     }).join(""));
@@ -168,12 +171,25 @@
   function renderTodayTitle() {
     $("today-title").textContent = `${COPY[session.mode].title}: ${session.steps.length} moves, about ${Math.round(session.seconds / 60)} min`;
   }
+  // More or fewer moves than the length gives: Wiggle still picks which, and the length follows. Held only
+  // until the length or the kind of session changes, or the app is closed.
+  let extra = 0;
   function renderToday() {
     const level = levelFrom(state.history);
     session = build({ minutes: state.minutes, focus: picked(), mode: state.mode, level, off: state.off, prefs: state.prefs,
-      history: state.history, today: dayKey(new Date()), have: HAVE, gear: gearOn() });
+      history: state.history, today: dayKey(new Date()), have: HAVE, gear: gearOn(), extra });
+    $("morefew").hidden = isForm();
     renderList();
   }
+  function moreOrFewer(by) {
+    const n = session.steps.length;
+    extra += by; renderToday();
+    if (session.steps.length !== n) return;
+    extra -= by; renderToday();
+    toast(by > 0 ? "That's every move that fits today." : "That's as few as it goes.");
+  }
+  $("more").addEventListener("click", () => moreOrFewer(1));
+  $("fewer").addEventListener("click", () => moreOrFewer(-1));
   function renderList() {
     renderTodayTitle();
     const level = session.level;
@@ -233,13 +249,19 @@
 
   $("lengths").addEventListener("click", (e) => {
     const b = e.target.closest("button"); if (!b) return;
-    state.minutes = +b.dataset.min; save(); renderPick(); renderToday();
+    state.minutes = +b.dataset.min; extra = 0; save(); renderPick(); renderToday();
   });
   $("modes").addEventListener("click", (e) => {
     const b = e.target.closest("button"); if (!b) return;
-    state.mode = b.dataset.mode; save(); renderPick(); renderGear(); renderToday(); // Qigong hides the gear
+    state.mode = b.dataset.mode; extra = 0; save(); renderPick(); renderGear(); renderToday(); // Qigong hides the gear
   });
-  // Tap an area to add it, tap again to take it off; Everything clears them.
+  $("halves").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    const k = b.dataset.half, all = k === "all" || b.getAttribute("aria-checked") === "true"; // tap a picked half again for the whole body
+    state.areas[state.mode] = all ? [] : HALVES[k][state.mode === "morning" ? "areas" : "muscles"].slice();
+    save(); renderPick(); renderToday();
+  });
+  // Tap an area to add it, tap again to take it off.
   $("focuses").addEventListener("click", (e) => {
     const b = e.target.closest("button"); if (!b) return;
     const k = b.dataset.focus, on = picked();
