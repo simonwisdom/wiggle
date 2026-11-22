@@ -1,6 +1,6 @@
 // Builds a session from the move library: picks varied moves for the minutes you have, favours the
 // areas you picked, moves you haven't done lately and the ones you asked for more of, orders them from
-// the floor up, and shifts reps by how the last few sessions felt. swap() replaces one move.
+// the floor up, and shifts reps by how the last few sessions felt. swap() replaces one move; swapChoices() lists what it can become.
 // A session is for the morning, before a workout (moving stretches only, quicker) or after one (long
 // holds, slow breath, from standing down to the floor).
 // Pure functions, no DOM: the page uses window.PLAN, the tests use module.exports.
@@ -602,21 +602,20 @@
     return { minutes, focus: "all", mode, level, pace: b, steps, seconds: total(), off: [], prefs: {}, have, gear: [], skipped: [] };
   }
 
-  // Replace step i with another move: same position if one is free (so the body needn't get up or down),
-  // sharing an area with the old one where possible, reps set to take about the same time.
-  function swap(session, i) {
+  // The moves that could take step i's place, best fit first: free, allowed in this kind of session, with
+  // gear you have. Best is the same position (so the body needn't get up or down), sharing an area with the
+  // old move. Null when the step can't be swapped.
+  function standIns(session, i) {
     const old = session.steps[i];
     const m0 = old && byId[old.id];
     const mode = session.mode, tg = targetsOf(session.focus, mode);
     if (!m0 || keepOf(m0, mode) || modeOf(mode).form) return null;
     const inUse = new Set(session.steps.map((s) => s.id));
-    const skipped = [...(session.skipped || []), old.id];
     const prefs = session.prefs || {};
     const gearLeft = gearCapOf(session.minutes) - session.steps.filter((s, k) => k !== i && byId[s.id] && byId[s.id].gear).length;
-    const cands = MOVES.filter((m) => !m.form && (!m.gear || gearLeft > 0) && !keepOf(m, mode) && modeOf(mode).can(m) && !inUse.has(m.id) && !skipped.includes(m.id) &&
+    const cands = MOVES.filter((m) => !m.form && (!m.gear || gearLeft > 0) && !keepOf(m, mode) && modeOf(mode).can(m) && !inUse.has(m.id) &&
       !(session.off || []).includes(m.id) && (!session.have || session.have.includes(m.id)) &&
       (!m.gear || (session.gear || []).includes(m.gear)));
-    if (!cands.length) return null;
     const near = (m) => Math.abs(POSITIONS[m.position] - POSITIONS[m0.position]);
     const fit = (m) => (near(m) === 0 ? 4 : near(m) === 1 ? 1.5 : 1) *
       (m.areas.some((a) => m0.areas.includes(a)) ? 2 : 1) *
@@ -624,13 +623,45 @@
       (mode === "after" && m.type === "hold" ? 1.5 : 1) *
       (prefs[m.id] === "more" ? 1.5 : prefs[m.id] === "less" ? 0.4 : 1);
     cands.sort((x, y) => fit(y) - fit(x));
-    const m = cands[0];
+    return { old, m0, tg, cands };
+  }
+  // Move m as a step taking about as long as the step it replaces.
+  function standIn(session, old, m) {
     const want = secondsOf(old.segs);
     let n = m.reps.min;
     for (let k = m.reps.min; k <= m.reps.max; k++) if (Math.abs(secondsOf(m.segs(k, session.pace)) - want) < Math.abs(secondsOf(m.segs(n, session.pace)) - want)) n = k;
+    return stepOf(m, n, session.pace, session.mode);
+  }
+
+  // The moves to choose from when swapping step i: the ones for the same muscle, as steps, best fit first.
+  // Around a workout "the same muscle" is the muscle groups that list the old move (only the ones you
+  // picked, when it is in one of them); in the morning, and for a move no group lists, its body areas.
+  //   label: what the old move is for; same: false when nothing else for it fits, and steps are then the
+  //   closest other moves. Null when the step can't be swapped.
+  function swapChoices(session, i) {
+    const s = standIns(session, i);
+    if (!s) return null;
+    const gym = session.mode === "before" || session.mode === "after";
+    let groups = gym ? Object.keys(MUSCLES).filter((k) => MUSCLES[k].moves.includes(s.m0.id)) : [];
+    if (groups.some((k) => s.tg.keys.includes(k))) groups = groups.filter((k) => s.tg.keys.includes(k));
+    const isSame = groups.length ? (m) => groups.some((k) => MUSCLES[k].moves.includes(m.id)) : (m) => m.areas.some((a) => s.m0.areas.includes(a));
+    const names = groups.length ? groups.map((k) => MUSCLES[k].label) : s.m0.areas.map((a) => AREAS[a]);
+    const label = names.map((n) => n.toLowerCase()).join(names.length > 2 ? ", " : " and ") || "the whole body";
+    const same = s.cands.filter(isSame);
+    return { label, same: same.length > 0, steps: (same.length ? same : s.cands.slice(0, 6)).map((m) => standIn(session, s.old, m)) };
+  }
+
+  // Replace step i with another move, reps set to take about the same time: the move `id` when given (one
+  // of swapChoices'), else the best fit not already swapped away here.
+  function swap(session, i, id) {
+    const s = standIns(session, i);
+    if (!s) return null;
+    const skipped = [...(session.skipped || []), s.old.id];
+    const m = id ? s.cands.find((c) => c.id === id) : s.cands.find((c) => !skipped.includes(c.id));
+    if (!m) return null;
     const steps = session.steps.slice();
-    steps[i] = stepOf(m, n, session.pace, mode);
-    const seconds = INTRO + steps.reduce((s, x) => s + TRANSITION + secondsOf(x.segs), 0);
+    steps[i] = standIn(session, s.old, m);
+    const seconds = INTRO + steps.reduce((t, x) => t + TRANSITION + secondsOf(x.segs), 0);
     return { ...session, steps, seconds, skipped };
   }
 
@@ -657,7 +688,7 @@
     return { segs, total: t };
   }
 
-  const api = { MOVES, GEAR, AREAS, FOCUS, MUSCLES, HALVES, POSITIONS, MODES, build, swap, timeline, levelFrom, secondsOf, lastDone };
+  const api = { MOVES, GEAR, AREAS, FOCUS, MUSCLES, HALVES, POSITIONS, MODES, build, swap, swapChoices, timeline, levelFrom, secondsOf, lastDone };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.PLAN = api;
 })(typeof window !== "undefined" ? window : globalThis);

@@ -4,7 +4,7 @@
   const LOOK = window.LOOK;
   const CLIPS = window.CLIPS || {};
   const { annotate, segmentFrame, playable, poseOf, loopOf, frameAt } = window.CLIPPLAY;
-  const { build, swap, timeline, levelFrom, MOVES, MODES, AREAS, MUSCLES, GEAR, HALVES } = window.PLAN;
+  const { build, swap, swapChoices, timeline, levelFrom, MOVES, MODES, AREAS, MUSCLES, GEAR, HALVES } = window.PLAN;
   const SOUND = window.SOUND;
   const GEARDRAW = window.GEARDRAW;
   const $ = (id) => document.getElementById(id);
@@ -200,11 +200,32 @@
     $("today-list").innerHTML = session.steps.map((s, i) => `<li>${thumb(s)}<span class="mv"><span>${s.name}</span><span class="muted small">${s.count}</span></span>
       ${s.fixed ? "" : `<button class="swap" data-i="${i}" aria-label="Swap ${s.name} for another move">Swap</button>`}</li>`).join("");
   }
-  $("today-list").addEventListener("click", (e) => {
+  $("today-list").addEventListener("click", async (e) => {
     const b = e.target.closest(".swap"); if (!b) return;
-    const next = swap(session, +b.dataset.i);
-    if (!next) { toast("No other move fits here."); return; }
-    session = next; renderList();
+    const next = await chooseSwap(+b.dataset.i);
+    if (next) { session = next; renderList(); }
+  });
+
+  // Swap opens a sheet of the moves for the same muscle; tapping one puts it in step i's place.
+  // Gives the new session, or null when the sheet is closed without a pick or nothing else fits.
+  let swapDone = null;
+  function chooseSwap(i) {
+    const c = swapChoices(session, i);
+    if (!c || !c.steps.length) { toast("No other move fits here."); return Promise.resolve(null); }
+    $("swaps-title").textContent = "Swap " + session.steps[i].name;
+    $("swaps-note").textContent = c.same ? `Other moves for ${c.label}.` : `Nothing else for ${c.label} fits here. These are the closest.`;
+    $("swaps-list").innerHTML = c.steps.map((s) => `<li><button type="button" data-id="${s.id}">${thumb(s)}<span class="mv"><span>${s.name}</span><span class="muted small">${s.count}</span></span></button></li>`).join("");
+    $("swaps").dataset.i = i; $("swaps").returnValue = "";
+    $("swaps").showModal();
+    return new Promise((done) => (swapDone = done));
+  }
+  $("swaps-list").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (b) $("swaps").close(b.dataset.id);
+  });
+  $("swaps").addEventListener("close", () => {
+    const d = $("swaps"), done = swapDone, id = d.returnValue;
+    swapDone = null;
+    if (done) done(id && id !== "close" ? swap(session, +d.dataset.i, id) : null);
   });
 
   // A small stick figure of the move's first pose, from its clip (or the hand-made pose), fitted to its box.
@@ -581,15 +602,19 @@
     seek(i < 0 ? 0 : session.steps[i].t0);
     setPlaying(was); render();
   }
-  // Swap the move playing now for another, from the start of its "Next:" lead-in. With the voice on,
-  // the track is built again for the new session; it keeps its place and whether the voice was muted.
+  // Swap the move playing now for one you pick, from the start of its "Next:" lead-in. The session waits
+  // while you choose. With the voice on, the track is built again for the new session; it keeps its place
+  // and whether the voice was muted.
   $("swap").addEventListener("click", async () => {
-    if (starting) return;
+    if (starting || swapDone) return;
     const i = stepIndex();
-    const next = i >= 0 && swap(session, i);
-    if (!next) { toast("No other move fits here."); return; }
-    session = next;
+    if (i < 0) return;
     const was = playing;
+    const choosing = chooseSwap(i);
+    if (swapDone) setPlaying(false);
+    const next = await choosing;
+    if (!next) { setPlaying(was); return; }
+    session = next;
     if (soundOn) {
       const muted = track.muted;
       setPlaying(false); soundOn = false; starting = true;

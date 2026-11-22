@@ -138,6 +138,10 @@ symbol .fill { fill: currentColor; stroke: none; }
 .thumb circle { fill: var(--in); }
 .mv { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .swap { flex-shrink: 0; min-height: 34px; padding: 0 14px; border-radius: var(--r-pill); background: var(--soft); font-size: 14px; font-weight: 700; color: var(--in-ink); }
+/* The Swap sheet: each move is one button, the whole row */
+.picks li { padding: 0; }
+.picks button { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 60px; padding: 10px 0; text-align: left; }
+.picks button:active { background: var(--soft); }
 
 /* Settings: one list, a row each, the way iOS Settings does it */
 .rows { overflow: hidden; }

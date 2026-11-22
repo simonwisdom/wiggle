@@ -2,7 +2,7 @@
 // The 3D clips are different: cache first, each stored whole (a stored whole file can't answer a byte-range request on its
 // own, and Safari asks for video in ranges, so this answers them itself). They are stored only once you pick 3D, in a cache
 // of their own that an app update leaves alone; bump CLIPS when they are rendered again.
-const CACHE = "morning-stretch-v15";
+const CACHE = "morning-stretch-v16";
 const CLIPS = "wiggle-clips3d-v2";
 const CLIP_DIR = "clips3d/";
 const FILES = ["./", "index.html", "app.css", "app.js", "plan.js", "poses.js", "clips.js", "clipplay.js", "gear.js", "figure.js", "figure3d.js", "sound.js", "sound/voice.json", "sound/voice.pack", "manifest.webmanifest", "icon.svg",

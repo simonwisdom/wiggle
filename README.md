@@ -25,7 +25,7 @@
 - **Your gear, if you have it.** Add a foam roller, a stick or a massage gun and it tops up the session with moves for them.
 - **Moves like a person.** Each move is traced from real movement, so the figure reaches, rolls and turns the way you do. Switch to a 3D figure if you like.
 - **Eyes optional.** A voice names each move, a soft sound rises on the in-breath and falls on the out-breath, and a chime marks each change. It keeps going with the phone locked or in a pocket, and the headphone buttons pause and skip.
-- **Learns from how it felt.** Tell it Easy, About right or Hard. Ask for more or fewer moves and it picks them, swap any move, or ask for one more, less or never.
+- **Learns from how it felt.** Tell it Easy, About right or Hard. Ask for more or fewer moves and it picks them, swap any move for another for the same muscle, or ask for one more, less or never.
 - **Private.** No account. Your history stays in your phone's browser.
 
 ## Run it yourself

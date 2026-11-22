@@ -371,3 +371,43 @@ test("upper and lower body cover every area and muscle group between them, with 
   const lowerMoves = s.steps.filter((x) => !x.fixed && MOVES.find((m) => m.id === x.id).areas.some((a) => HALVES.lower.areas.includes(a)));
   assert.ok(lowerMoves.length >= s.steps.filter((x) => !x.fixed).length * 0.6, ids(s).join());
 });
+
+test("swap choices are the other moves for the same muscle, and the one picked goes in", () => {
+  const { swapChoices, MUSCLES } = require("../public/plan.js");
+  // Around a workout: the muscle group that lists the move.
+  const s = build({ minutes: 10, mode: "before", focus: ["glutes"], today: DAYS[2] });
+  const group = MUSCLES.shoulders.moves;
+  const i = ids(s).indexOf("beastcrab");
+  assert.ok(i >= 0, ids(s).join());
+  const c = swapChoices(s, i);
+  assert.strictEqual(c.label, "shoulders");
+  assert.ok(c.same && c.steps.length > 1, c.steps.map((x) => x.id).join());
+  for (const x of c.steps) {
+    assert.ok(group.includes(x.id), `${x.id} is not a shoulders move`);
+    assert.ok(!ids(s).includes(x.id), `${x.id} is already in the session`);
+    assert.ok(move(x.id).type !== "hold", `${x.id} is a hold, in a warm-up`);
+  }
+  const pick = c.steps[c.steps.length - 1];
+  const w = swap(s, i, pick.id);
+  assert.strictEqual(w.steps[i].id, pick.id);
+  assert.deepStrictEqual(w.steps[i].segs, pick.segs, "the step shown is the step that goes in");
+  assert.deepStrictEqual(ids(w).filter((_, k) => k !== i), ids(s).filter((_, k) => k !== i));
+  // The move swapped away is a choice again, so a pick can be undone.
+  assert.ok(swapChoices(w, i).steps.some((x) => x.id === s.steps[i].id));
+  // Only a move on the list can go in; a move that opens or closes the session has no list.
+  assert.strictEqual(swap(s, i, s.steps[i].id), null);
+  assert.strictEqual(swap(s, i, "still"), null);
+  assert.strictEqual(swapChoices(s, 0), null);
+
+  // In the morning: the move's body areas.
+  const m = build({ minutes: 10, today: DAYS[3] });
+  const old = move(m.steps[2].id), cm = swapChoices(m, 2);
+  assert.strictEqual(cm.label, old.areas.map((a) => AREAS[a].toLowerCase()).join(old.areas.length > 2 ? ", " : " and "));
+  assert.ok(cm.same && cm.steps.every((x) => move(x.id).areas.some((a) => old.areas.includes(a))));
+
+  // Nothing else for the muscle (a glutes warm-up already holds every glutes move that fits): the closest
+  // other moves, said as such. A move picked for several muscles is named for the ones you chose.
+  const j = ids(s).indexOf("bridge"), none = swapChoices(s, j);
+  assert.strictEqual(none.label, "glutes");
+  assert.ok(!none.same && none.steps.length > 0 && none.steps.every((x) => !MUSCLES.glutes.moves.includes(x.id)));
+});
